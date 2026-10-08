@@ -7,10 +7,12 @@ export interface GalleryItem {
   description: string;
   location?: string;
   alt: string;
+  isIllustrative?: boolean;
+  provenance?: "client" | "stock" | "generated";
 }
 
 export const galleryCategories = [
-  { id: "all", label: "All Projects" },
+  { id: "all", label: "All Solutions" },
   { id: "automation", label: "Gate & Garage Automation" },
   { id: "fencing", label: "Electric Fencing" },
   { id: "cctv", label: "CCTV & Surveillance" },
@@ -21,13 +23,14 @@ export const galleryCategories = [
 export const galleryItems: GalleryItem[] = [
   {
     id: "proj-1",
-    title: "Heavy-Duty Sliding Gate Motor Installation",
+    title: "Heavy-Duty Sliding Gate Motor Setup",
     category: "automation",
     categoryLabel: "Gate Automation",
     image: "/assets/images/gallery/gate-motor-1.jpg",
-    description: "Centurion high-speed sliding gate motor with lithium battery backup and heavy-duty rack mounting.",
-    location: "Sandton, Johannesburg",
-    alt: "Installed Centurion sliding gate motor along a paved driveway gate"
+    description: "Sliding gate motor installation featuring rack gear alignment, safety infrared beams, and battery backup support.",
+    alt: "Sliding gate motor installed along a residential driveway gate",
+    isIllustrative: true,
+    provenance: "stock"
   },
   {
     id: "proj-2",
@@ -35,9 +38,10 @@ export const galleryItems: GalleryItem[] = [
     category: "fencing",
     categoryLabel: "Electric Fencing",
     image: "/assets/images/gallery/electric-fence-1.jpg",
-    description: "8-strand stainless steel electric fence installation with high-tension brackets and energizer integration.",
-    location: "Randburg, Johannesburg",
-    alt: "Stainless steel 8-strand electric fence mounted cleanly on brick perimeter wall"
+    description: "8-strand stainless steel perimeter electric fence with high-tension line brackets and energizer integration.",
+    alt: "Stainless steel 8-strand electric fence mounted cleanly on boundary wall",
+    isIllustrative: true,
+    provenance: "stock"
   },
   {
     id: "proj-3",
@@ -45,38 +49,42 @@ export const galleryItems: GalleryItem[] = [
     category: "cctv",
     categoryLabel: "CCTV Surveillance",
     image: "/assets/images/gallery/cctv-1.jpg",
-    description: "Full-color night vision 4K IP cameras monitoring residential boundary lines and main gate area.",
-    location: "Midrand, Gauteng",
-    alt: "High-definition CCTV turret camera mounted under soffit overlooking driveway"
+    description: "High-definition turret camera setup monitoring boundary line and driveway entry.",
+    alt: "CCTV turret camera mounted under soffit overlooking property entrance",
+    isIllustrative: true,
+    provenance: "stock"
   },
   {
     id: "proj-4",
-    title: "Wireless Alarm & Outdoor Passives Installation",
+    title: "Outdoor Perimeter Motion Detection",
     category: "alarms",
     categoryLabel: "Intruder Alarms",
     image: "/assets/images/gallery/alarm-1.jpg",
-    description: "Paradox outdoor dual-tech passive detectors providing early perimeter intrusion detection.",
-    location: "Centurion, Pretoria",
-    alt: "Outdoor motion sensor mounted on exterior wall protecting home courtyard"
+    description: "Outdoor dual-tech passive detectors providing early perimeter intrusion detection.",
+    alt: "Outdoor motion sensor mounted on exterior wall",
+    isIllustrative: true,
+    provenance: "stock"
   },
   {
     id: "proj-5",
-    title: "Estate Access Control & Biometric Reader",
+    title: "Access Control Keypad & Reader Unit",
     category: "access",
     categoryLabel: "Access Control",
     image: "/assets/images/gallery/access-1.jpg",
-    description: "Weatherproof biometric fingerprint reader and key fob scanner mounted at main complex visitor entrance.",
-    location: "Fourways, Johannesburg",
-    alt: "Biometric access control pedestal unit next to estate entrance boom gate"
+    description: "Weatherproof keyless entry keypad and reader unit for controlled pedestrian or vehicle access.",
+    alt: "Access control keypad unit at property entrance",
+    isIllustrative: true,
+    provenance: "stock"
   },
   {
     id: "proj-6",
-    title: "GSM Video Intercom & Gate Opener System",
+    title: "Video Intercom & Gate Station Unit",
     category: "access",
     categoryLabel: "Intercom Systems",
     image: "/assets/images/gallery/intercom-1.jpg",
-    description: "Anti-vandal metal gate intercom station linked to smartphone app for remote gate opening.",
-    location: "Bryanston, Sandton",
-    alt: "Vandal-resistant metal intercom station mounted on stone entrance pillar"
+    description: "Vandal-resistant gate station intercom connecting main entry directly to indoor monitor or phone.",
+    alt: "Gate station intercom mounted on boundary entrance pillar",
+    isIllustrative: true,
+    provenance: "stock"
   }
 ];

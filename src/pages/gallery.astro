@@ -6,33 +6,42 @@ import { siteData } from '../data/site';
 ---
 
 <Layout
-  title={`Project Gallery | ${siteData.companyName}`}
-  description="View completed Gate & Guard Projects installations in Gauteng: sliding gate motors, wall-top electric fences, 4K CCTV systems, and access control."
+  title={`Security Solutions & Workmanship Portfolio | ${siteData.companyName}`}
+  description="Explore Gate & Guard Projects security solutions: sliding gate motors, electric fencing, 4K CCTV systems, and access control installations."
 >
   <div class="page-header">
     <div class="container">
-      <span class="header-badge">Workmanship Portfolio</span>
-      <h1 class="page-title">Completed Project Gallery</h1>
+      <span class="header-badge">Workmanship &amp; Solutions</span>
+      <h1 class="page-title">Security Solutions Gallery</h1>
       <p class="page-lead">
-        A showcase of clean, durable security installations and automation upgrades across residential homes, complexes, and commercial properties.
+        A visual overview of perimeter security solutions, gate automation setups, electric fencing, and smart access control configurations.
       </p>
     </div>
   </div>
 
   <section class="gallery-section">
     <div class="container">
+      <div class="gallery-notice-banner">
+        <div class="notice-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+        </div>
+        <p>
+          <strong>Illustrative Solutions Showcase:</strong> Images below demonstrate equipment setups and installation standards. Client installation photos with confirmed property permissions will be updated as project sign-offs are completed.
+        </p>
+      </div>
+
       <GalleryGrid />
     </div>
   </section>
 
-  <QuoteCTA title="Impressed by Our Workmanship?" subtitle="Contact us today to schedule a site assessment for your home or complex." />
+  <QuoteCTA title="Impressed by Our Workmanship?" subtitle="Contact us today to schedule a site evaluation for your home, complex, or commercial property." />
 </Layout>
 
 <style>
   .page-header {
     background-color: var(--colour-charcoal);
     color: var(--colour-white);
-    padding: 4rem 0 3.5rem 0;
+    padding: 4.5rem 0 3.5rem 0;
     border-bottom: 2px solid var(--colour-gold);
   }
 
@@ -48,22 +57,44 @@ import { siteData } from '../data/site';
   }
 
   .page-title {
-    font-family: var(--font-heading);
-    font-size: clamp(2.5rem, 5vw, 3.75rem);
+    font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 800;
     line-height: 1.1;
-    margin-bottom: 0.75rem;
+    margin-bottom: 1rem;
   }
 
   .page-lead {
     font-size: 1.15rem;
     color: var(--colour-silver);
-    max-width: 750px;
-    line-height: 1.6;
+    max-width: 680px;
   }
 
   .gallery-section {
-    padding: 4rem 0;
+    padding: 4.5rem 0;
     background-color: var(--colour-paper);
+  }
+
+  .gallery-notice-banner {
+    display: flex;
+    gap: 0.85rem;
+    align-items: flex-start;
+    background-color: #fff8e6;
+    border: 1px solid var(--colour-gold);
+    border-radius: var(--radius-card);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .notice-icon {
+    color: var(--colour-gold-deep);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .gallery-notice-banner p {
+    font-size: 0.95rem;
+    color: var(--colour-ink);
+    line-height: 1.5;
+    margin-bottom: 0;
   }
 </style>

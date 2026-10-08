@@ -11,7 +11,7 @@ const cocFaqs = faqsData.filter(f => f.category === 'coc' || f.category === 'fen
 
 <Layout
   title={`Electric Fence COC Certification | ${siteData.companyName}`}
-  description="Ensure legal compliance and insurance coverage with certified Electric Fence System Certificates of Compliance (EFSCOC) in Gauteng."
+  description="Ensure legal compliance and safety standards with certified Electric Fence System Certificates of Compliance (EFSCOC)."
 >
   <div class="page-header">
     <div class="container">
@@ -28,74 +28,79 @@ const cocFaqs = faqsData.filter(f => f.category === 'coc' || f.category === 'fen
       <div class="coc-main">
         <h2 class="subhead">Why Is an Electric Fence COC Essential?</h2>
         <p>
-          In South Africa, the Electrical Machinery Regulations (under the Occupational Health and Safety Act) stipulate that every electric fence installation must have a valid Electric Fence System Certificate of Compliance (EFSCOC).
+          In South Africa, the Electrical Machinery Regulations (under the Occupational Health and Safety Act) stipulate that electric fence installations must possess a valid Electric Fence System Certificate of Compliance (EFSCOC).
         </p>
         <p>
-          Property transfers cannot proceed without a valid certificate, and insurance claims following a burglary or electrical fault may be repudiated if the electric fence fails to meet statutory safety standards.
+          Property transfers frequently require a valid certificate, and insurance underwriters may request proof of compliance during property claims or security audits.
         </p>
 
         <div class="requirements-box">
-          <h3 class="req-title">What We Inspect for Certification:</h3>
+          <h3 class="req-title">What Is Assessed During Inspection:</h3>
           <ul class="req-list">
             <li>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--colour-gold-dark)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              <span>SABS/SANS 60335-2-76 approved energizers with output power limits</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--colour-gold-deep)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>SABS/SANS 60335-2-76 approved energizers with rated output limits</span>
             </li>
             <li>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--colour-gold-dark)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              <span>Adequate earth spike placement (minimum 3 spikes spaced correctly)</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--colour-gold-deep)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Adequate earth spike placement (correct array spacing and earthing)</span>
             </li>
             <li>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--colour-gold-dark)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--colour-gold-deep)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
               <span>Correct mounting height (minimum 1.5m above ground level on boundary walls)</span>
             </li>
             <li>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--colour-gold-dark)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              <span>Visible yellow warning signs placed at maximum 10-meter intervals</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--colour-gold-deep)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Clear, high-visibility warning signage installed at mandatory intervals</span>
             </li>
             <li>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--colour-gold-dark)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              <span>Functional lightning diverters &amp; surge suppression units</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--colour-gold-deep)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Isolated cut-out switches and safe gateway pathway clearances</span>
             </li>
           </ul>
         </div>
 
-        <h2 class="subhead mt-large">When Do You Need a COC Inspection?</h2>
-        <div class="steps-list">
-          <div class="step-card">
-            <h4>1. Property Transfers &amp; Sales</h4>
-            <p>Conveyancers require an EFSCOC before lodging deed transfers.</p>
-          </div>
-          <div class="step-card">
-            <h4>2. New Fence Installations</h4>
-            <p>Every newly erected electric fence must be tested and certified immediately upon completion.</p>
-          </div>
-          <div class="step-card">
-            <h4>3. Major Repairs &amp; Extensions</h4>
-            <p>If energizers, wiring strands, or boundary poles are modified or extended.</p>
-          </div>
-        </div>
-
-        <div class="faq-wrap mt-large">
-          <h2 class="subhead">Compliance FAQs</h2>
-          <FaqList faqs={cocFaqs} />
-        </div>
+        <h2 class="subhead mt-large">Inspection &amp; Certification Process</h2>
+        <ol class="step-list">
+          <li>
+            <strong>On-Site Technical Audit:</strong> Our registered installer conducts a full physical inspection of energizers, wire tension, earth array, and warning signs.
+          </li>
+          <li>
+            <strong>Rectification Work (If Required):</strong> If non-compliant faults or earth leaks are detected, we provide a transparent quote for necessary repairs.
+          </li>
+          <li>
+            <strong>EFSCOC Certificate Issuance:</strong> Once the installation satisfies statutory SANS standards, an official Certificate of Compliance is issued.
+          </li>
+        </ol>
       </div>
 
-      <div class="coc-sidebar">
-        <WhatsAppQuoteForm />
+      <div class="coc-form-col">
+        <WhatsAppQuoteForm
+          title="Book a COC Inspection"
+          subtitle="Request an on-site electric fence compliance evaluation for property transfer or peace of mind."
+          defaultServiceSlug="electric-fencing"
+        />
       </div>
     </div>
   </section>
 
-  <QuoteCTA title="Book an Electric Fence COC Inspection" subtitle="Fast turnaround times across Johannesburg, Sandton, Centurion, and Gauteng." />
+  <section class="coc-faq-section">
+    <div class="container">
+      <h2 class="subhead text-center">Electric Fence Compliance FAQs</h2>
+      <div class="faq-wrap">
+        <FaqList faqs={cocFaqs} />
+      </div>
+    </div>
+  </section>
+
+  <QuoteCTA title="Need an Electric Fence COC Urgently?" subtitle="Contact our technical team today to schedule an inspection before transfer or sale." />
 </Layout>
 
 <style>
   .page-header {
     background-color: var(--colour-charcoal);
     color: var(--colour-white);
-    padding: 4rem 0 3.5rem 0;
+    padding: 4.5rem 0 3.5rem 0;
     border-bottom: 2px solid var(--colour-gold);
   }
 
@@ -111,40 +116,38 @@ const cocFaqs = faqsData.filter(f => f.category === 'coc' || f.category === 'fen
   }
 
   .page-title {
-    font-family: var(--font-heading);
-    font-size: clamp(2.5rem, 5vw, 3.75rem);
+    font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 800;
     line-height: 1.1;
-    margin-bottom: 0.75rem;
+    margin-bottom: 1rem;
   }
 
   .page-lead {
     font-size: 1.15rem;
     color: var(--colour-silver);
-    max-width: 750px;
-    line-height: 1.6;
+    max-width: 680px;
   }
 
   .coc-section {
-    padding: 4rem 0;
-    background-color: var(--colour-paper);
+    padding: 4.5rem 0;
+    background-color: var(--colour-white);
   }
 
   .coc-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 3.5rem;
   }
 
   @media (min-width: 992px) {
     .coc-grid {
-      grid-template-columns: 1.8fr 1fr;
+      grid-template-columns: 14fr 10fr;
+      align-items: start;
     }
   }
 
   .subhead {
-    font-family: var(--font-heading);
-    font-size: 1.85rem;
+    font-size: 1.75rem;
     font-weight: 800;
     color: var(--colour-ink);
     margin-bottom: 1rem;
@@ -154,79 +157,68 @@ const cocFaqs = faqsData.filter(f => f.category === 'coc' || f.category === 'fen
     margin-top: 2.5rem;
   }
 
-  p {
-    font-size: 1rem;
+  .coc-main p {
+    font-size: 1.05rem;
     color: var(--colour-text);
     line-height: 1.7;
     margin-bottom: 1.25rem;
   }
 
   .requirements-box {
-    background-color: var(--colour-white);
+    background-color: var(--colour-paper);
     border: 1px solid var(--colour-line);
     border-left: 4px solid var(--colour-gold);
-    border-radius: var(--radius-md);
-    padding: 1.5rem;
+    border-radius: var(--radius-card);
+    padding: 1.75rem;
     margin: 2rem 0;
   }
 
   .req-title {
-    font-family: var(--font-heading);
     font-size: 1.35rem;
-    font-weight: 800;
     color: var(--colour-ink);
     margin-bottom: 1rem;
   }
 
   .req-list {
     list-style: none;
-    padding: 0;
-    margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 0.85rem;
   }
 
   .req-list li {
     display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    font-size: 0.95rem;
-    font-weight: 600;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.975rem;
     color: var(--colour-text);
   }
 
-  .steps-list {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
+  .req-list svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .step-list {
+    padding-left: 1.25rem;
+    display: flex;
+    flex-direction: column;
     gap: 1rem;
+    font-size: 1.025rem;
+    color: var(--colour-text);
   }
 
-  @media (min-width: 640px) {
-    .steps-list {
-      grid-template-columns: repeat(3, 1fr);
-    }
+  .coc-faq-section {
+    padding: 4.5rem 0;
+    background-color: var(--colour-paper);
   }
 
-  .step-card {
-    background-color: var(--colour-white);
-    border: 1px solid var(--colour-line);
-    border-radius: var(--radius-sm);
-    padding: 1.25rem;
+  .text-center {
+    text-align: center;
   }
 
-  .step-card h4 {
-    font-family: var(--font-heading);
-    font-size: 1.2rem;
-    font-weight: 800;
-    color: var(--colour-ink);
-    margin-bottom: 0.5rem;
-  }
-
-  .step-card p {
-    font-size: 0.875rem;
-    color: var(--colour-muted);
-    line-height: 1.5;
-    margin: 0;
+  .faq-wrap {
+    max-width: 800px;
+    margin: 2rem auto 0 auto;
   }
 </style>

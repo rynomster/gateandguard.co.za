@@ -10,14 +10,14 @@ const generalFaqs = faqsData.filter(f => f.category === 'general' || f.category 
 
 <Layout
   title={`Contact & Fast Quote Request | ${siteData.companyName}`}
-  description="Get in touch with Gate & Guard Projects for fast security quotes, gate motor repairs, electric fencing COCs, and CCTV installations in Gauteng."
+  description="Contact Gate & Guard Projects for security quotes, gate motor repairs, electric fencing COCs, and CCTV installations."
 >
   <div class="page-header">
     <div class="container">
       <span class="header-badge">Get In Touch</span>
       <h1 class="page-title">Contact &amp; Request a Quote</h1>
       <p class="page-lead">
-        Send us a quick message via WhatsApp or call our team directly for site visits, system repairs, and instant estimates across Gauteng.
+        Send us a quick message via WhatsApp or call our team directly for site visits, system repairs, and instant estimates.
       </p>
     </div>
   </div>
@@ -28,7 +28,7 @@ const generalFaqs = faqsData.filter(f => f.category === 'general' || f.category 
       <div class="contact-info-col">
         <h2 class="subhead">Direct Contact Details</h2>
         <p class="intro-p">
-          We pride ourselves on rapid response times and direct technician communication.
+          We pride ourselves on prompt response times and direct technician communication.
         </p>
 
         <div class="info-cards">
@@ -38,7 +38,7 @@ const generalFaqs = faqsData.filter(f => f.category === 'general' || f.category 
             </div>
             <div class="card-text">
               <h4>Telephone Contact</h4>
-              <p><a href={`tel:${siteData.phone}`}>{siteData.phoneFormatted}</a></p>
+              <p><a href={`tel:${siteData.phone}`} data-analytics="phone_click" data-placement="contact_page">{siteData.phoneFormatted}</a></p>
             </div>
           </div>
 
@@ -48,7 +48,7 @@ const generalFaqs = faqsData.filter(f => f.category === 'general' || f.category 
             </div>
             <div class="card-text">
               <h4>Instant WhatsApp</h4>
-              <p><a href={`https://wa.me/${siteData.whatsapp}`} target="_blank" rel="noopener noreferrer">{siteData.whatsappFormatted}</a></p>
+              <p><a href={`https://wa.me/${siteData.whatsapp}?text=Hello%20Gate%20%26%20Guard%20Projects,%20I%20would%20like%20to%20request%20a%20quote.`} target="_blank" rel="noopener noreferrer" data-analytics="whatsapp_click" data-placement="contact_page">{siteData.whatsappFormatted}</a></p>
             </div>
           </div>
 
@@ -58,7 +58,7 @@ const generalFaqs = faqsData.filter(f => f.category === 'general' || f.category 
             </div>
             <div class="card-text">
               <h4>Email Enquiries</h4>
-              <p><a href={`mailto:${siteData.email}`}>{siteData.email}</a></p>
+              <p><a href={`mailto:${siteData.email}`} data-analytics="email_click" data-placement="contact_page">{siteData.email}</a></p>
             </div>
           </div>
 
@@ -67,30 +67,27 @@ const generalFaqs = faqsData.filter(f => f.category === 'general' || f.category 
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
             </div>
             <div class="card-text">
-              <h4>Operating Hours</h4>
+              <h4>Business Operating Hours</h4>
               <p>Mon - Fri: {siteData.businessHours.weekdays}</p>
-              <p>Sat: {siteData.businessHours.saturday}</p>
-              <p>Sun: {siteData.businessHours.sunday}</p>
+              <p>Saturday: {siteData.businessHours.saturday}</p>
+              <p>Sunday: {siteData.businessHours.sunday}</p>
             </div>
           </div>
         </div>
-
-        <div class="serviced-areas-block">
-          <h3 class="block-title">Key Areas Serviced</h3>
-          <p class="areas-text">
-            {siteData.serviceAreas.join(' • ')} and surrounding Gauteng suburbs.
-          </p>
-        </div>
-
-        <div class="faq-block">
-          <h3 class="block-title">Common Questions</h3>
-          <FaqList faqs={generalFaqs} />
-        </div>
       </div>
 
-      <!-- Form Column -->
-      <div class="contact-form-col">
+      <!-- Quote Form Column -->
+      <div class="contact-form-col" id="quote">
         <WhatsAppQuoteForm />
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-faq-section">
+    <div class="container">
+      <h2 class="subhead text-center">Frequently Asked Questions</h2>
+      <div class="faq-wrap">
+        <FaqList faqs={generalFaqs} />
       </div>
     </div>
   </section>
@@ -100,7 +97,7 @@ const generalFaqs = faqsData.filter(f => f.category === 'general' || f.category 
   .page-header {
     background-color: var(--colour-charcoal);
     color: var(--colour-white);
-    padding: 4rem 0 3.5rem 0;
+    padding: 4.5rem 0 3.5rem 0;
     border-bottom: 2px solid var(--colour-gold);
   }
 
@@ -116,47 +113,45 @@ const generalFaqs = faqsData.filter(f => f.category === 'general' || f.category 
   }
 
   .page-title {
-    font-family: var(--font-heading);
-    font-size: clamp(2.5rem, 5vw, 3.75rem);
+    font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 800;
     line-height: 1.1;
-    margin-bottom: 0.75rem;
+    margin-bottom: 1rem;
   }
 
   .page-lead {
     font-size: 1.15rem;
     color: var(--colour-silver);
-    max-width: 750px;
-    line-height: 1.6;
+    max-width: 680px;
   }
 
   .contact-section {
-    padding: 4rem 0;
-    background-color: var(--colour-paper);
+    padding: 4.5rem 0;
+    background-color: var(--colour-white);
   }
 
   .contact-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 3.5rem;
   }
 
   @media (min-width: 992px) {
     .contact-grid {
-      grid-template-columns: 1fr 1.1fr;
+      grid-template-columns: 10fr 14fr;
+      align-items: start;
     }
   }
 
   .subhead {
-    font-family: var(--font-heading);
-    font-size: 1.85rem;
+    font-size: 1.75rem;
     font-weight: 800;
     color: var(--colour-ink);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
   }
 
   .intro-p {
-    font-size: 1rem;
+    font-size: 1.05rem;
     color: var(--colour-muted);
     margin-bottom: 2rem;
   }
@@ -164,18 +159,17 @@ const generalFaqs = faqsData.filter(f => f.category === 'general' || f.category 
   .info-cards {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    margin-bottom: 2rem;
+    gap: 1.25rem;
   }
 
   .info-card {
     display: flex;
-    align-items: center;
-    gap: 1rem;
-    background-color: var(--colour-white);
+    gap: 1.25rem;
+    align-items: flex-start;
+    padding: 1.25rem;
+    background-color: var(--colour-paper);
     border: 1px solid var(--colour-line);
-    border-radius: var(--radius-sm);
-    padding: 1rem 1.25rem;
+    border-radius: var(--radius-card);
   }
 
   .card-icon {
@@ -184,56 +178,49 @@ const generalFaqs = faqsData.filter(f => f.category === 'general' || f.category 
     justify-content: center;
     width: 44px;
     height: 44px;
-    background-color: var(--colour-paper);
-    color: var(--colour-gold-dark);
-    border-radius: var(--radius-sm);
+    background-color: var(--colour-charcoal);
+    color: var(--colour-gold-bright);
+    border-radius: var(--radius-control);
     flex-shrink: 0;
   }
 
-  .card-icon.wa-icon {
-    background-color: rgba(37, 211, 102, 0.15);
-    color: #25d366;
+  .wa-icon {
+    background-color: #25d366;
+    color: #ffffff;
   }
 
   .card-text h4 {
-    font-family: var(--font-heading);
-    font-size: 1.05rem;
-    font-weight: 800;
+    font-size: 1.1rem;
     color: var(--colour-ink);
-    margin-bottom: 0.15rem;
+    margin-bottom: 0.25rem;
   }
 
   .card-text p {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     color: var(--colour-text);
-    margin: 0;
+    margin-bottom: 0.15rem;
   }
 
-  .serviced-areas-block {
-    background-color: var(--colour-white);
-    border: 1px solid var(--colour-line);
-    border-left: 4px solid var(--colour-gold);
-    border-radius: var(--radius-sm);
-    padding: 1.25rem;
-    margin-bottom: 2.5rem;
+  .card-text a {
+    color: var(--colour-gold-deep);
+    font-weight: 600;
   }
 
-  .block-title {
-    font-family: var(--font-heading);
-    font-size: 1.25rem;
-    font-weight: 800;
-    color: var(--colour-ink);
-    margin-bottom: 0.5rem;
+  .card-text a:hover {
+    color: var(--colour-gold);
   }
 
-  .areas-text {
-    font-size: 0.9rem;
-    color: var(--colour-text);
-    line-height: 1.6;
-    margin: 0;
+  .contact-faq-section {
+    padding: 4.5rem 0;
+    background-color: var(--colour-paper);
   }
 
-  .faq-block {
-    margin-top: 2.5rem;
+  .text-center {
+    text-align: center;
+  }
+
+  .faq-wrap {
+    max-width: 800px;
+    margin: 2rem auto 0 auto;
   }
 </style>

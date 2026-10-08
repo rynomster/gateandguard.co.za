@@ -1,21 +1,18 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import FaqList from '../../components/FaqList.astro';
-import QuoteCTA from '../../components/QuoteCTA.astro';
 import WhatsAppQuoteForm from '../../components/WhatsAppQuoteForm.astro';
-import { servicesData, type Service } from '../../data/services';
+import QuoteCTA from '../../components/QuoteCTA.astro';
+
+import { servicesData } from '../../data/services';
 import { siteData } from '../../data/site';
 import { path } from '../../utils/paths';
 
 export function getStaticPaths() {
-  return servicesData.map((svc) => ({
-    params: { slug: svc.slug },
-    props: { service: svc }
+  return servicesData.map((service) => ({
+    params: { slug: service.slug },
+    props: { service },
   }));
-}
-
-interface Props {
-  service: Service;
 }
 
 const { service } = Astro.props;
@@ -25,264 +22,292 @@ const { service } = Astro.props;
   title={`${service.title} | ${siteData.companyName}`}
   description={service.summary}
 >
-  <!-- Service Header -->
-  <div class="service-header">
-    <div class="container">
-      <div class="breadcrumbs">
-        <a href={path('/')}>Home</a> / <a href={path('/services')}>Services</a> / <span>{service.shortTitle}</span>
+  <!-- Service Hero -->
+  <div class="service-hero">
+    <div class="service-hero-media">
+      <img
+        src={path(service.heroImage)}
+        alt={service.title}
+        width="1200"
+        height="600"
+        fetchpriority="high"
+        loading="eager"
+        class="service-hero-img"
+      />
+      <div class="service-hero-overlay"></div>
+    </div>
+
+    <div class="container service-hero-container">
+      <div class="service-hero-content">
+        <a href={path('/services')} class="back-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          <span>All Services</span>
+        </a>
+        <h1 class="service-title">{service.title}</h1>
+        <p class="service-lead">{service.summary}</p>
+
+        <div class="hero-cta-row">
+          <a href={path(`/contact?service=${encodeURIComponent(service.slug)}#quote`)} class="btn-primary">
+            <span>Get a Quote for {service.shortTitle}</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+        </div>
       </div>
-      <h1 class="service-title">{service.title}</h1>
-      <p class="service-summary">{service.summary}</p>
     </div>
   </div>
 
-  <section class="service-detail-section">
-    <div class="container detail-grid">
-      <!-- Main Content Area -->
-      <div class="detail-main">
-        <div class="overview-block">
-          <h2 class="section-title">Overview</h2>
-          <p class="description-p">{service.description}</p>
-        </div>
+  <!-- Service Detail Body -->
+  <section class="service-body-section">
+    <div class="container service-grid">
+      <div class="service-main">
+        <h2 class="subhead">Overview</h2>
+        <p class="description-text">{service.description}</p>
 
-        <!-- Key Features Grid -->
-        <div class="features-block">
-          <h2 class="section-title">Key Capabilities &amp; Features</h2>
-          <ul class="features-list">
-            {service.features.map((feat) => (
-              <li>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--colour-gold-dark)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span>{feat}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <!-- What Is Included -->
-        <div class="included-block">
-          <h2 class="section-title">What Is Included</h2>
-          <div class="included-grid">
-            {service.whatIsIncluded.map((item, idx) => (
-              <div class="included-card">
-                <span class="step-num">0{idx + 1}</span>
-                <p class="step-text">{item}</p>
+        <h2 class="subhead mt-large">Key Capabilities &amp; Features</h2>
+        <div class="features-grid">
+          {service.features.map((feature) => (
+            <div class="feature-card">
+              <div class="feature-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--colour-gold-deep)" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
               </div>
-            ))}
-          </div>
+              <span>{feature}</span>
+            </div>
+          ))}
         </div>
 
-        <!-- Common Use Cases -->
-        <div class="use-cases-block">
-          <h2 class="section-title">Ideal Applications</h2>
-          <ul class="use-case-list">
-            {service.useCases.map((uc) => (
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--colour-gold-dark)" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                <span>{uc}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <h2 class="subhead mt-large">Typical Applications</h2>
+        <ul class="applications-list">
+          {service.useCases.map((useCase) => (
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--colour-gold-deep)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>{useCase}</span>
+            </li>
+          ))}
+        </ul>
 
-        <!-- Supported Brands (if any) -->
         {service.supportedBrands && service.supportedBrands.length > 0 && (
-          <div class="brands-block">
-            <h2 class="section-title">Supported Equipment &amp; Brands</h2>
-            <div class="brands-tags">
+          <div class="brands-box">
+            <h4>Supported &amp; Installed Brands</h4>
+            <div class="brand-tags">
               {service.supportedBrands.map((brand) => (
-                <span class="brand-tag">{brand}</span>
+                <span class="brand-chip">{brand}</span>
               ))}
             </div>
           </div>
         )}
 
-        <!-- Service-Specific FAQs (if present) -->
         {service.faqs && service.faqs.length > 0 && (
-          <div class="faqs-block">
-            <h2 class="section-title">Frequently Asked Questions</h2>
+          <div class="service-faq-block mt-large">
+            <h2 class="subhead">Service FAQs</h2>
             <FaqList faqs={service.faqs.map(f => ({ ...f, category: 'general' }))} />
           </div>
         )}
       </div>
 
-      <!-- Sidebar Form Area -->
-      <div class="detail-sidebar">
-        <WhatsAppQuoteForm />
+      <!-- Sidebar Quote Form -->
+      <div class="service-sidebar">
+        <WhatsAppQuoteForm
+          title={`Quote: ${service.shortTitle}`}
+          subtitle={`Request a fast quote for ${service.title.toLowerCase()}.`}
+          defaultServiceSlug={service.slug}
+        />
       </div>
     </div>
   </section>
 
-  <QuoteCTA title={`Ready to book ${service.shortTitle}?`} />
+  <QuoteCTA
+    title={`Ready to Upgrade Your ${service.shortTitle}?`}
+    subtitle="Contact Gate & Guard Projects today to discuss your site specifications and obtain an estimate."
+  />
 </Layout>
 
 <style>
-  .service-header {
+  .service-hero {
+    position: relative;
     background-color: var(--colour-charcoal);
-    color: var(--colour-white);
-    padding: 3.5rem 0 3rem 0;
+    padding: 5rem 0 4rem 0;
     border-bottom: 2px solid var(--colour-gold);
+    overflow: hidden;
   }
 
-  .breadcrumbs {
-    font-size: 0.875rem;
-    color: var(--colour-silver);
-    margin-bottom: 0.75rem;
+  .service-hero-media {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
   }
 
-  .breadcrumbs a {
-    color: var(--colour-silver-light);
+  .service-hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.85);
   }
 
-  .breadcrumbs a:hover {
+  .service-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(10, 14, 18, 0.95) 0%, rgba(10, 14, 18, 0.85) 50%, rgba(10, 14, 18, 0.5) 100%);
+  }
+
+  .service-hero-container {
+    position: relative;
+    z-index: 2;
+  }
+
+  .service-hero-content {
+    max-width: 720px;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    font-weight: 800;
     color: var(--colour-gold-bright);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 1.25rem;
   }
 
-  .breadcrumbs span {
-    color: var(--colour-gold-bright);
+  .back-link:hover {
+    color: var(--colour-white);
   }
 
   .service-title {
-    font-family: var(--font-heading);
-    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-size: clamp(2.5rem, 5.5vw, 4.25rem);
     font-weight: 800;
-    line-height: 1.1;
-    margin-bottom: 0.75rem;
+    color: var(--colour-white);
+    line-height: 1.05;
+    margin-bottom: 1rem;
   }
 
-  .service-summary {
+  .service-lead {
     font-size: 1.15rem;
     color: var(--colour-silver);
-    max-width: 750px;
     line-height: 1.6;
+    margin-bottom: 2rem;
   }
 
-  .service-detail-section {
-    padding: 4rem 0;
-    background-color: var(--colour-paper);
+  .service-body-section {
+    padding: 4.5rem 0;
+    background-color: var(--colour-white);
   }
 
-  .detail-grid {
+  .service-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 3.5rem;
   }
 
   @media (min-width: 992px) {
-    .detail-grid {
-      grid-template-columns: 1.8fr 1fr;
+    .service-grid {
+      grid-template-columns: 14fr 10fr;
+      align-items: start;
     }
   }
 
-  .section-title {
-    font-family: var(--font-heading);
-    font-size: 1.65rem;
+  .subhead {
+    font-size: 1.75rem;
     font-weight: 800;
     color: var(--colour-ink);
     margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--colour-line);
   }
 
-  .description-p {
-    font-size: 1.05rem;
+  .mt-large {
+    margin-top: 2.5rem;
+  }
+
+  .description-text {
+    font-size: 1.075rem;
+    color: var(--colour-text);
     line-height: 1.7;
-    color: var(--colour-text);
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.5rem;
   }
 
-  .features-block, .included-block, .use-cases-block, .brands-block, .faqs-block {
-    margin-bottom: 2.5rem;
-  }
-
-  .features-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .features-list li {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--colour-text);
-    background-color: var(--colour-white);
-    padding: 0.75rem 1rem;
-    border-radius: var(--radius-sm);
-    border: 1px solid var(--colour-line);
-  }
-
-  .included-grid {
+  .features-grid {
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: 1fr;
     gap: 1rem;
+    margin-bottom: 1.5rem;
   }
 
-  @media (min-width: 640px) {
-    .included-grid {
+  @media (min-width: 768px) {
+    .features-grid {
       grid-template-columns: repeat(2, 1fr);
     }
   }
 
-  .included-card {
-    background-color: var(--colour-white);
-    border: 1px solid var(--colour-line);
-    border-radius: var(--radius-sm);
-    padding: 1.25rem;
-    position: relative;
-  }
-
-  .step-num {
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: var(--colour-gold-dark);
-    display: block;
-    margin-bottom: 0.25rem;
-  }
-
-  .step-text {
-    font-size: 0.95rem;
-    color: var(--colour-text);
-    line-height: 1.4;
-    margin: 0;
-  }
-
-  .use-case-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-  }
-
-  .use-case-list li {
+  .feature-card {
     display: flex;
     align-items: center;
-    gap: 0.6rem;
+    gap: 0.85rem;
+    background-color: var(--colour-paper);
+    border: 1px solid var(--colour-line);
+    border-radius: var(--radius-control);
+    padding: 1rem;
     font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--colour-ink);
+  }
+
+  .feature-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .applications-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    margin-bottom: 2rem;
+  }
+
+  .applications-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 1rem;
     color: var(--colour-text);
   }
 
-  .brands-tags {
+  .applications-list svg {
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+
+  .brands-box {
+    background-color: var(--colour-paper);
+    border: 1px solid var(--colour-line);
+    border-left: 4px solid var(--colour-gold);
+    border-radius: var(--radius-card);
+    padding: 1.5rem;
+    margin: 2.5rem 0;
+  }
+
+  .brands-box h4 {
+    font-size: 1.15rem;
+    color: var(--colour-ink);
+    margin-bottom: 0.85rem;
+  }
+
+  .brand-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 0.6rem;
   }
 
-  .brand-tag {
-    background-color: var(--colour-charcoal);
-    color: var(--colour-gold-bright);
-    font-family: var(--font-heading);
-    font-size: 0.95rem;
+  .brand-chip {
+    background-color: var(--colour-white);
+    border: 1px solid var(--colour-line);
+    padding: 0.35rem 0.85rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
     font-weight: 700;
-    letter-spacing: 0.05em;
-    padding: 0.4rem 0.85rem;
-    border-radius: var(--radius-sm);
+    color: var(--colour-ink);
   }
 </style>
