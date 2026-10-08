@@ -1,14 +1,15 @@
 ---
 import { siteData } from '../data/site';
+import { path } from '../utils/paths';
 
 const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
-  { href: '/services', label: 'Services' },
-  { href: '/gallery', label: 'Gallery' },
-  { href: '/coc-certification', label: 'COC Certification' },
-  { href: '/diy-projects', label: 'DIY Projects' },
-  { href: '/contact', label: 'Contact' },
+  { href: path('/'), label: 'Home' },
+  { href: path('/about'), label: 'About' },
+  { href: path('/services'), label: 'Services' },
+  { href: path('/gallery'), label: 'Gallery' },
+  { href: path('/coc-certification'), label: 'COC Certification' },
+  { href: path('/diy-projects'), label: 'DIY Projects' },
+  { href: path('/contact'), label: 'Contact' },
 ];
 
 const currentPath = Astro.url.pathname;
@@ -36,14 +37,14 @@ const currentPath = Astro.url.pathname;
   <nav class="main-nav" aria-label="Main Navigation">
     <div class="container nav-inner">
       <!-- Brand Logo -->
-      <a href="/" class="brand-logo" aria-label="Gate and Guard Projects Home">
-        <img src="/assets/brand/logo-horizontal.svg" alt="Gate & Guard Projects Logo" class="brand-img" width="220" height="42" />
+      <a href={path('/')} class="brand-logo" aria-label="Gate and Guard Projects Home">
+        <img src={path('/assets/brand/logo-horizontal.svg')} alt="Gate & Guard Projects Logo" class="brand-img" width="220" height="42" />
       </a>
 
       <!-- Desktop Nav List -->
       <ul class="nav-links">
         {navLinks.map((link) => {
-          const isActive = link.href === '/' ? currentPath === '/' : currentPath.startsWith(link.href);
+          const isActive = link.href === path('/') ? (currentPath === path('/') || currentPath === path('')) : currentPath.startsWith(link.href);
           return (
             <li>
               <a href={link.href} class:list={['nav-link', { active: isActive }]} aria-current={isActive ? 'page' : undefined}>
@@ -56,7 +57,7 @@ const currentPath = Astro.url.pathname;
 
       <!-- CTA Button -->
       <div class="header-actions">
-        <a href="/contact#quote" class="btn-header-cta">Get a Quote</a>
+        <a href={path('/contact#quote')} class="btn-header-cta">Get a Quote</a>
 
         <!-- Mobile Menu Toggle Button -->
         <button id="menu-toggle" class="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle Navigation Menu">
@@ -71,7 +72,7 @@ const currentPath = Astro.url.pathname;
     <div id="mobile-menu" class="mobile-menu-panel" aria-hidden="true">
       <ul class="mobile-nav-links">
         {navLinks.map((link) => {
-          const isActive = link.href === '/' ? currentPath === '/' : currentPath.startsWith(link.href);
+          const isActive = link.href === path('/') ? (currentPath === path('/') || currentPath === path('')) : currentPath.startsWith(link.href);
           return (
             <li>
               <a href={link.href} class:list={['mobile-nav-link', { active: isActive }]}>
@@ -82,7 +83,7 @@ const currentPath = Astro.url.pathname;
         })}
       </ul>
       <div class="mobile-menu-cta">
-        <a href="/contact#quote" class="btn-mobile-quote">Get a Quote</a>
+        <a href={path('/contact#quote')} class="btn-mobile-quote">Get a Quote</a>
         <a href={`https://wa.me/${siteData.whatsapp}?text=Hello%20Gate%20%26%20Guard%20Projects,%20I%20would%20like%20to%20request%20a%20quote.`} class="btn-mobile-wa" target="_blank" rel="noopener noreferrer">
           WhatsApp Us
         </a>

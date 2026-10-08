@@ -1,13 +1,14 @@
 import type { APIRoute } from 'astro';
 
-const robotsTxt = `
+export const GET: APIRoute = ({ site }) => {
+  const sitemapUrl = site ? new URL('sitemap-index.xml', site).href : 'https://rynomster.github.io/gateandguard.co.za/sitemap-index.xml';
+  const robotsTxt = `
 User-agent: *
 Allow: /
 
-Sitemap: https://gateandguard.co.za/sitemap-index.xml
+Sitemap: ${sitemapUrl}
 `.trim();
 
-export const GET: APIRoute = () => {
   return new Response(robotsTxt, {
     headers: {
       'Content-Type': 'text/plain; charset=utf-8',

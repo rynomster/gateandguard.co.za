@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import QuoteCTA from '../components/QuoteCTA.astro';
 import WhatsAppQuoteForm from '../components/WhatsAppQuoteForm.astro';
 import { siteData } from '../data/site';
+import { path } from '../utils/paths';
 
 const diyKits = [
   {
@@ -59,7 +60,7 @@ const diyKits = [
               <span class="kit-brand">{kit.brand}</span>
               <h3 class="kit-title">{kit.title}</h3>
               <p class="kit-desc">{kit.desc}</p>
-              <a href="/contact#quote" class="btn-kit-enquire">Enquire / Order Kit</a>
+              <a href={path('/contact#quote')} class="btn-kit-enquire">Enquire / Order Kit</a>
             </div>
           ))}
         </div>

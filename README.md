@@ -1,6 +1,6 @@
 # Gate & Guard Projects Website
 
-Official production static marketing website for **Gate & Guard Projects** (`https://gateandguard.co.za`).
+Official production static marketing website for **Gate & Guard Projects** (`https://gateandguard.co.za` / `https://rynomster.github.io/gateandguard.co.za/`).
 
 Designed for speed, security trustworthiness, and mobile accessibility, built with Astro, TypeScript, and vanilla CSS.
 
@@ -21,7 +21,7 @@ npm ci
 npm run dev
 ```
 
-Open `http://localhost:4321` in your browser.
+Open `http://localhost:4321/gateandguard.co.za/` in your browser.
 
 ## 3. Production Build & Validation
 
@@ -77,13 +77,16 @@ This project uses official GitHub Actions for automatic deployment.
 2. Under **Build and deployment > Source**, select **GitHub Actions**.
 3. Push changes to `main` or `master` branch, or trigger manually via **Actions > Deploy Gate & Guard Website to GitHub Pages > Run workflow**.
 
-## 8. Custom Domain & DNS Overview
+## 8. Custom Domain & DNS Setup (When Domain is Purchased)
 
-- Custom domain file is configured at `public/CNAME` (`gateandguard.co.za`).
-- **DNS Records** (configured in your domain registrar / DNS manager):
+When you purchase `gateandguard.co.za`:
+
+1. **Add CNAME file**: Create `public/CNAME` with `gateandguard.co.za`.
+2. **Update Astro Config**: In `astro.config.mjs`, update `site: 'https://gateandguard.co.za'` and change `base: '/'`.
+3. **DNS Records** (configured in your domain registrar / DNS manager):
   - **Apex Domain (`gateandguard.co.za`)**: Point `A` records to GitHub Pages IP addresses:
     - `185.199.108.153`
     - `185.199.109.153`
     - `185.199.110.153`
     - `185.199.111.153`
-  - **Subdomain (`www.gateandguard.co.za`)**: Add a `CNAME` record pointing to `<your-github-username>.github.io`.
+  - **Subdomain (`www.gateandguard.co.za`)**: Add a `CNAME` record pointing to `rynomster.github.io`.

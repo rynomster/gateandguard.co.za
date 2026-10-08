@@ -1,5 +1,6 @@
 ---
 import { galleryItems, galleryCategories } from '../data/gallery';
+import { path } from '../utils/paths';
 ---
 
 <div class="gallery-component">
@@ -18,7 +19,7 @@ import { galleryItems, galleryCategories } from '../data/gallery';
       <div class="gallery-card" data-cat={item.category}>
         <div class="card-img-wrap">
           <img
-            src={item.image}
+            src={path(item.image)}
             alt={item.alt}
             loading="lazy"
             width="400"
@@ -36,7 +37,7 @@ import { galleryItems, galleryCategories } from '../data/gallery';
               <span>{item.location}</span>
             </p>
           )}
-          <button type="button" class="btn-preview" data-img={item.image} data-title={item.title} data-desc={item.description}>
+          <button type="button" class="btn-preview" data-img={path(item.image)} data-title={item.title} data-desc={item.description}>
             Enlarge Photo
           </button>
         </div>

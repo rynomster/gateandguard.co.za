@@ -1,5 +1,6 @@
 ---
 import { siteData } from '../data/site';
+import { path } from '../utils/paths';
 
 interface Props {
   title?: string;
@@ -30,7 +31,7 @@ const {
         <span>Call {siteData.phoneFormatted}</span>
       </a>
 
-      <a href="/contact#quote" class="btn-cta-form">
+      <a href={path('/contact#quote')} class="btn-cta-form">
         <span>Request Form</span>
       </a>
     </div>
