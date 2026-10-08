@@ -2,15 +2,38 @@
   <defs>
     <linearGradient id="goldGradFav" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#E5AA32" />
+      <stop offset="50%" stop-color="#D99A1B" />
       <stop offset="100%" stop-color="#A86F08" />
+    </linearGradient>
+    <linearGradient id="silverGradFav" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E8ECEF" />
+      <stop offset="50%" stop-color="#C9CDD2" />
+      <stop offset="100%" stop-color="#8A929A" />
     </linearGradient>
     <linearGradient id="charcoalGradFav" x1="0%" y1="0%" x2="0%" y2="100%">
       <stop offset="0%" stop-color="#242B30" />
       <stop offset="100%" stop-color="#0F1316" />
     </linearGradient>
   </defs>
+
+  <!-- Outer Shield - Gold Border -->
   <path d="M 100,10 L 185,45 C 185,145 140,205 100,230 C 60,205 15,145 15,45 Z" fill="url(#goldGradFav)" />
-  <path d="M 100,24 L 171,53 C 171,137 131,191 100,213 C 69,191 29,137 29,53 Z" fill="url(#charcoalGradFav)" />
-  <path d="M 100,65 L 135,100 L 135,150 L 65,150 L 65,100 Z" fill="#E5AA32" />
-  <circle cx="100" cy="115" r="12" fill="#0F1316" />
+
+  <!-- Inner Shield - Dark Field -->
+  <path d="M 100,22 L 173,52 C 173,138 132,192 100,215 C 68,192 27,138 27,52 Z" fill="url(#charcoalGradFav)" />
+
+  <!-- Inner Silver Rim Accent -->
+  <path d="M 100,28 L 167,56 C 167,134 128,185 100,207 C 72,185 33,134 33,56 Z" fill="none" stroke="url(#silverGradFav)" stroke-width="2.5" opacity="0.8" />
+
+  <!-- Center Emblem: Gate & Lock Emblem -->
+  <g transform="translate(100, 115)">
+    <!-- Outer Lock / Gate Arch - Silver -->
+    <path d="M -35,10 V -15 C -35,-35 35,-35 35,-15 V 10" fill="none" stroke="url(#silverGradFav)" stroke-width="10" stroke-linecap="round" />
+    <!-- Lock Body / Gate Shield - Gold & Charcoal -->
+    <rect x="-38" y="0" width="76" height="58" rx="8" fill="url(#goldGradFav)" stroke="url(#silverGradFav)" stroke-width="3" />
+    <!-- Keyhole & Guard Bar - Dark/Silver -->
+    <circle cx="0" cy="22" r="9" fill="#0B0E10" />
+    <path d="M -5,22 L 5,22 L 8,42 L -8,42 Z" fill="#0B0E10" />
+    <circle cx="0" cy="22" r="4" fill="url(#silverGradFav)" />
+  </g>
 </svg>
