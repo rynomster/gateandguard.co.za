@@ -74,6 +74,7 @@ async function createPlaceholders() {
   // Brand assets from /tmp/file_attachments if present
   const shieldEmblem = '/tmp/file_attachments/Dual-Tone Metallic Shield Emblem.png';
   const shieldWordmark = '/tmp/file_attachments/Chrome and Gold Shield Wordmark.png';
+  const wideWordmark = '/tmp/file_attachments/file_0000000054f4820e9ffea2802298de49.png';
 
   if (fs.existsSync(shieldEmblem)) {
     // logo-mark
@@ -84,13 +85,14 @@ async function createPlaceholders() {
     await sharp(shieldEmblem).resize({ width: 512, height: 512, fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } }).webp().toFile('public/assets/brand/logo-stacked.webp');
   }
 
-  if (fs.existsSync(shieldWordmark)) {
+  if (fs.existsSync(wideWordmark)) {
+    // logo-horizontal wide
+    await sharp(wideWordmark).trim().resize({ width: 600, fit: 'inside' }).png().toFile('public/assets/brand/logo-horizontal.png');
+    await sharp(wideWordmark).trim().resize({ width: 600, fit: 'inside' }).webp().toFile('public/assets/brand/logo-horizontal.webp');
+  } else if (fs.existsSync(shieldWordmark)) {
     // logo-horizontal
-    await sharp(shieldWordmark).resize({ width: 600, fit: 'inside' }).png().toFile('public/assets/brand/logo-horizontal.png');
-    await sharp(shieldWordmark).resize({ width: 600, fit: 'inside' }).webp().toFile('public/assets/brand/logo-horizontal.webp');
-  } else if (fs.existsSync(shieldEmblem)) {
-    await sharp(shieldEmblem).resize({ width: 600, fit: 'inside' }).png().toFile('public/assets/brand/logo-horizontal.png');
-    await sharp(shieldEmblem).resize({ width: 600, fit: 'inside' }).webp().toFile('public/assets/brand/logo-horizontal.webp');
+    await sharp(shieldWordmark).trim().resize({ width: 600, fit: 'inside' }).png().toFile('public/assets/brand/logo-horizontal.png');
+    await sharp(shieldWordmark).trim().resize({ width: 600, fit: 'inside' }).webp().toFile('public/assets/brand/logo-horizontal.webp');
   }
 
   console.log('All image and brand assets created successfully.');
