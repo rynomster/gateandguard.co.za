@@ -1,94 +1,168 @@
 ---
 import { siteData } from '../data/site';
 import { servicesData } from '../data/services';
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  defaultServiceSlug?: string;
+}
+
+const {
+  title = "Request a Fast Quote",
+  subtitle = "Fill in your details below to generate an instant pre-filled WhatsApp quote request or email enquiry.",
+  defaultServiceSlug = ""
+} = Astro.props;
 ---
 
-<div class="whatsapp-quote-card" id="quote">
+<div class="quote-form-card">
   <div class="form-header">
-    <h3 class="form-title">Request a Free Quote</h3>
-    <p class="form-sub">Fill in your details below to generate an instant WhatsApp request or fallback call/email.</p>
+    <div class="wa-badge">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+      <span>Instant WhatsApp Quote Funnel</span>
+    </div>
+    <h3 class="form-title">{title}</h3>
+    <p class="form-subtitle">{subtitle}</p>
   </div>
 
-  <form id="wa-quote-form" class="quote-form" action="#">
+  <form id="whatsapp-quote-form" class="quote-form">
+    <!-- Required Service Selection -->
     <div class="form-group">
-      <label for="q-name">Your Full Name <span class="req">*</span></label>
-      <input type="text" id="q-name" name="name" required placeholder="e.g. Johan Smith" class="form-control" />
-    </div>
-
-    <div class="form-group">
-      <label for="q-phone">Phone / Contact Number <span class="req">*</span></label>
-      <input type="tel" id="q-phone" name="phone" required placeholder="e.g. 082 123 4567" class="form-control" />
-    </div>
-
-    <div class="form-group">
-      <label for="q-area">Suburb / Area in Gauteng <span class="req">*</span></label>
-      <input type="text" id="q-area" name="area" required placeholder="e.g. Sandton, Randburg, Centurion" class="form-control" />
-    </div>
-
-    <div class="form-group">
-      <label for="q-service">Service Required <span class="req">*</span></label>
-      <select id="q-service" name="service" required class="form-control">
-        <option value="">Select a service category...</option>
-        {servicesData.map((svc) => (
-          <option value={svc.shortTitle}>{svc.title}</option>
+      <label for="form-service" class="form-label">
+        Required Service <span class="required-asterisk">*</span>
+      </label>
+      <select id="form-service" name="service" class="form-select" required>
+        <option value="" disabled selected={!defaultServiceSlug}>Select a security service...</option>
+        {servicesData.map((s) => (
+          <option value={s.title} selected={defaultServiceSlug === s.slug}>
+            {s.title}
+          </option>
         ))}
-        <option value="General Security Enquiry">General Security & Inspection</option>
+        <option value="General Security Inspection">General Security Assessment</option>
+        <option value="Other Custom Enquiry">Other Security Request</option>
       </select>
     </div>
 
+    <!-- Contact Name -->
     <div class="form-group">
-      <label for="q-message">Brief Description / Notes</label>
-      <textarea id="q-message" name="message" rows="3" placeholder="Tell us about your property, motor type, fence repair, or CCTV needs..." class="form-control"></textarea>
+      <label for="form-name" class="form-label">
+        Your Full Name <span class="required-asterisk">*</span>
+      </label>
+      <input
+        type="text"
+        id="form-name"
+        name="name"
+        class="form-input"
+        placeholder="e.g. Johan van der Merwe"
+        required
+      />
     </div>
 
+    <!-- Phone Number -->
+    <div class="form-group">
+      <label for="form-phone" class="form-label">
+        Contact Phone Number <span class="required-asterisk">*</span>
+      </label>
+      <input
+        type="tel"
+        id="form-phone"
+        name="phone"
+        class="form-input"
+        placeholder="e.g. 082 123 4567"
+        required
+      />
+    </div>
+
+    <!-- Area / Suburb -->
+    <div class="form-group">
+      <label for="form-area" class="form-label">
+        Property Area / Suburb <span class="required-asterisk">*</span>
+      </label>
+      <input
+        type="text"
+        id="form-area"
+        name="area"
+        class="form-input"
+        placeholder="e.g. Suburb or City"
+        required
+      />
+    </div>
+
+    <!-- Additional Notes -->
+    <div class="form-group">
+      <label for="form-notes" class="form-label">
+        Additional Installation Notes <span class="optional-tag">(Optional)</span>
+      </label>
+      <textarea
+        id="form-notes"
+        name="notes"
+        class="form-textarea"
+        rows="3"
+        placeholder="Describe your gate motor model, fence length, or existing security setup..."
+      ></textarea>
+    </div>
+
+    <!-- Action Buttons -->
     <div class="form-actions">
-      <button type="submit" class="btn-submit-wa">
+      <button type="submit" class="btn-primary btn-submit-wa" id="btn-submit-wa" data-analytics="quote_form_whatsapp_handoff">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-        <span>Send Quote via WhatsApp</span>
+        <span>Send via WhatsApp</span>
       </button>
-    </div>
-  </form>
 
-  <div class="fallback-actions">
-    <p class="fallback-title">Prefer phone or direct email?</p>
-    <div class="fallback-buttons">
-      <a href={`tel:${siteData.phone}`} class="btn-fallback">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-        <span>Call {siteData.phoneFormatted}</span>
-      </a>
-      <a href={`mailto:${siteData.email}`} class="btn-fallback">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-        <span>Email Us</span>
+      <a href={`mailto:${siteData.email}`} id="btn-fallback-email" class="btn-secondary btn-secondary-light">
+        <span>Email Enquiry Instead</span>
       </a>
     </div>
-  </div>
+
+    <p class="form-disclaimer">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+      Submitting pre-fills a direct WhatsApp message to Gate &amp; Guard Projects. You can review the text before sending.
+    </p>
+  </form>
 </div>
 
 <style>
-  .whatsapp-quote-card {
+  .quote-form-card {
     background-color: var(--colour-white);
-    border: 2px solid var(--colour-gold);
-    border-radius: var(--radius-md);
+    border: 1px solid var(--colour-line);
+    border-radius: var(--radius-card);
     padding: 2rem;
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--shadow-card);
   }
 
   .form-header {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .wa-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background-color: #25d3661a;
+    border: 1px solid #25d36680;
+    color: #128c7e;
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.3rem 0.75rem;
+    border-radius: 20px;
+    margin-bottom: 0.75rem;
   }
 
   .form-title {
-    font-family: var(--font-heading);
     font-size: 1.75rem;
     font-weight: 800;
     color: var(--colour-ink);
-    letter-spacing: 0.02em;
-    margin-bottom: 0.35rem;
+    margin-bottom: 0.5rem;
   }
 
-  .form-sub {
-    font-size: 0.925rem;
+  .form-subtitle {
+    font-size: 0.95rem;
     color: var(--colour-muted);
+    line-height: 1.5;
+    margin-bottom: 0;
   }
 
   .quote-form {
@@ -103,125 +177,118 @@ import { servicesData } from '../data/services';
     gap: 0.4rem;
   }
 
-  label {
-    font-family: var(--font-heading);
-    font-size: 0.95rem;
+  .form-label {
+    font-size: 0.9rem;
     font-weight: 700;
     color: var(--colour-ink);
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
   }
 
-  .req {
-    color: #d9381e;
+  .required-asterisk {
+    color: #d93838;
   }
 
-  .form-control {
+  .optional-tag {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--colour-muted);
+  }
+
+  .form-input,
+  .form-select,
+  .form-textarea {
     width: 100%;
-    padding: 0.75rem 0.85rem;
+    padding: 0.75rem 1rem;
     font-family: var(--font-body);
-    font-size: 0.95rem;
-    border: 1px solid var(--colour-line);
-    border-radius: var(--radius-sm);
+    font-size: 0.975rem;
+    color: var(--colour-ink);
     background-color: var(--colour-paper);
-    color: var(--colour-text);
+    border: 1px solid var(--colour-line);
+    border-radius: var(--radius-control);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
   }
 
-  .form-control:focus {
-    border-color: var(--colour-gold);
-    background-color: var(--colour-white);
+  .form-input:focus,
+  .form-select:focus,
+  .form-textarea:focus {
     outline: none;
+    border-color: var(--colour-gold);
+    box-shadow: 0 0 0 3px rgba(223, 170, 53, 0.2);
+    background-color: var(--colour-white);
+  }
+
+  .form-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    margin-top: 0.5rem;
   }
 
   .btn-submit-wa {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.6rem;
     width: 100%;
-    background-color: #25d366;
-    color: #ffffff;
-    font-family: var(--font-heading);
-    font-size: 1.2rem;
-    font-weight: 800;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    padding: 0.85rem;
-    border: none;
-    border-radius: var(--radius-sm);
-    cursor: pointer;
-    box-shadow: var(--shadow-sm);
-    transition: background-color var(--transition-fast);
   }
 
-  .btn-submit-wa:hover {
-    background-color: #1eb956;
-  }
-
-  .fallback-actions {
-    margin-top: 1.75rem;
-    padding-top: 1.25rem;
-    border-top: 1px solid var(--colour-line);
-    text-align: center;
-  }
-
-  .fallback-title {
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--colour-muted);
-    margin-bottom: 0.75rem;
-  }
-
-  .fallback-buttons {
+  .form-disclaimer {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    justify-content: center;
-  }
-
-  .btn-fallback {
-    display: inline-flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 0.4rem;
-    background-color: var(--colour-paper);
-    color: var(--colour-text);
-    font-size: 0.875rem;
-    font-weight: 600;
-    padding: 0.5rem 0.85rem;
-    border: 1px solid var(--colour-line);
-    border-radius: var(--radius-sm);
+    font-size: 0.8125rem;
+    color: var(--colour-muted);
+    line-height: 1.4;
+    margin-top: 0.5rem;
   }
 
-  .btn-fallback:hover {
-    background-color: var(--colour-white);
-    border-color: var(--colour-gold);
-    color: var(--colour-gold-dark);
+  .form-disclaimer svg {
+    flex-shrink: 0;
+    margin-top: 2px;
   }
 </style>
 
 <script is:inline define:vars={{ whatsappNumber: siteData.whatsapp }}>
-  const form = document.getElementById('wa-quote-form');
-  if (form) {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = document.getElementById('q-name').value.trim();
-      const phone = document.getElementById('q-phone').value.trim();
-      const area = document.getElementById('q-area').value.trim();
-      const service = document.getElementById('q-service').value.trim();
-      const message = document.getElementById('q-message').value.trim();
+  document.addEventListener('DOMContentLoaded', () => {
+    // URL parameter pre-selection check
+    const urlParams = new URLSearchParams(window.location.search);
+    const serviceParam = urlParams.get('service');
+    const selectElem = document.getElementById('form-service');
 
-      let text = `Hello Gate & Guard Projects,\n\nI would like to request a quote.\n\n`;
-      text += `*Name:* ${name}\n`;
-      text += `*Phone:* ${phone}\n`;
-      text += `*Area:* ${area}\n`;
-      text += `*Service:* ${service}\n`;
-      if (message) {
-        text += `*Notes:* ${message}\n`;
+    if (serviceParam && selectElem) {
+      for (let i = 0; i < selectElem.options.length; i++) {
+        if (selectElem.options[i].value.toLowerCase().includes(serviceParam.toLowerCase()) ||
+            selectElem.options[i].text.toLowerCase().includes(serviceParam.toLowerCase())) {
+          selectElem.selectedIndex = i;
+          break;
+        }
       }
+    }
 
-      const encodedText = encodeURIComponent(text);
-      const waUrl = `https://wa.me/${whatsappNumber}?text=${encodedText}`;
-      window.open(waUrl, '_blank');
-    });
-  }
+    const form = document.getElementById('whatsapp-quote-form');
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const service = document.getElementById('form-service').value;
+        const name = document.getElementById('form-name').value;
+        const phone = document.getElementById('form-phone').value;
+        const area = document.getElementById('form-area').value;
+        const notes = document.getElementById('form-notes').value;
+
+        let message = `Hello Gate & Guard Projects,\n\nI would like to request a quote for *${service}*.\n\n`;
+        message += `*Name:* ${name}\n`;
+        message += `*Phone:* ${phone}\n`;
+        message += `*Area:* ${area}\n`;
+        if (notes.trim()) {
+          message += `*Notes:* ${notes}\n`;
+        }
+
+        const encodedMessage = encodeURIComponent(message);
+        const waUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+        // Analytics tracking hook
+        if (window.trackAnalyticsEvent) {
+          window.trackAnalyticsEvent('quote_form_whatsapp_handoff', { service, area });
+        }
+
+        window.open(waUrl, '_blank', 'noopener,noreferrer');
+      });
+    }
+  });
 </script>

@@ -9,41 +9,45 @@
 @import '@fontsource/inter/700.css';
 
 :root {
-  /* Brand Palette from DESIGN.md */
-  --colour-ink: #0b0e10;
-  --colour-charcoal: #151a1e;
-  --colour-panel: #1d2328;
-  --colour-paper: #f5f4f0;
+  /* Design Tokens from DESIGN.md v2 */
+  --colour-ink: #0a0e12;
+  --colour-charcoal: #121820;
+  --colour-panel: #1b232c;
+  --colour-panel-raised: #252f39;
+  --colour-paper: #f7f7f5;
   --colour-white: #ffffff;
-  --colour-gold: #d99a1b;
-  --colour-gold-bright: #e5aa32;
-  --colour-gold-dark: #a86f08;
-  --colour-silver: #c9cdd2;
-  --colour-silver-light: #e8ecef;
-  --colour-text: #171a1d;
-  --colour-muted: #6c747b;
-  --colour-line: #d9dde0;
+  --colour-text: #131a20;
+  --colour-muted: #64707a;
+  --colour-line: #dfe3e6;
   --colour-line-dark: #2a3238;
+
+  /* Gold Metallic Palette */
+  --colour-gold-bright: #f7d47c;
+  --colour-gold: #dfaa35;
+  --colour-gold-deep: #b57c16;
+  --colour-gold-shadow: #7a4b05;
+  --colour-silver: #cbd2d8;
+  --colour-silver-light: #e8ecef;
 
   /* Typography */
   --font-heading: 'Barlow Condensed', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
-  /* Layout */
+  /* Layout & Geometry */
   --container-max: 1240px;
   --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
+  --radius-control: 8px;
+  --radius-card: 12px;
 
   /* Shadows */
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
-  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.18);
-  --shadow-gold: 0 4px 20px rgba(217, 154, 27, 0.25);
+  --shadow-card: 0 14px 35px rgba(12, 19, 26, 0.09);
+  --shadow-gold: 0 10px 24px rgba(105, 67, 5, 0.24);
 
   /* Transitions */
-  --transition-fast: 150ms ease;
-  --transition-normal: 250ms ease;
+  --transition-fast: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-normal: 280ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* CSS Reset & Box Sizing */
@@ -90,7 +94,7 @@ p:last-child {
 }
 
 a {
-  color: var(--colour-gold-dark);
+  color: var(--colour-gold-deep);
   text-decoration: none;
   transition: color var(--transition-fast);
 }
@@ -109,6 +113,117 @@ img, svg {
 :focus-visible {
   outline: 3px solid var(--colour-gold-bright);
   outline-offset: 3px;
+}
+
+/* Reusable Premium Button Components (DESIGN.md v2 Specs) */
+.btn-primary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 48px;
+  padding: 0.85rem 1.6rem;
+  border: 1px solid #9d6b16;
+  border-radius: var(--radius-control);
+  color: #171307 !important;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: linear-gradient(135deg, #fff0ba 0%, #f6cf6a 16%, #e4ad37 47%, #c38a22 73%, #e2ad40 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.72),
+    inset 0 -2px 0 rgba(88, 51, 0, 0.22),
+    var(--shadow-gold);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), filter var(--transition-fast);
+  isolation: isolate;
+  cursor: pointer;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 52%;
+  z-index: -1;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.35), transparent);
+  pointer-events: none;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    inset 0 -2px 0 rgba(88, 51, 0, 0.22),
+    0 14px 28px rgba(105, 67, 5, 0.32);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 48px;
+  padding: 0.85rem 1.6rem;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: var(--radius-control);
+  color: var(--colour-white) !important;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  background-color: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(4px);
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.16);
+  border-color: var(--colour-silver);
+  color: var(--colour-white) !important;
+  transform: translateY(-1px);
+}
+
+.btn-secondary-light {
+  border: 1px solid var(--colour-line);
+  color: var(--colour-ink) !important;
+  background-color: var(--colour-white);
+}
+
+.btn-secondary-light:hover {
+  background-color: var(--colour-paper);
+  border-color: var(--colour-gold);
+  color: var(--colour-ink) !important;
+}
+
+.btn-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--colour-gold-deep);
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.btn-text:hover {
+  color: var(--colour-gold);
+  transform: translateX(2px);
 }
 
 /* Skip Link */
@@ -177,5 +292,8 @@ img, svg {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+  .btn-primary:hover, .btn-secondary:hover {
+    transform: none !important;
   }
 }

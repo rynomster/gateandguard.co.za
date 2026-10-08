@@ -2,98 +2,148 @@
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import TrustStrip from '../components/TrustStrip.astro';
-import SectionHeading from '../components/SectionHeading.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import TrustWhyChooseUs from '../components/TrustWhyChooseUs.astro';
 import SaferTomorrow from '../components/SaferTomorrow.astro';
 import QuoteCTA from '../components/QuoteCTA.astro';
+import FaqList from '../components/FaqList.astro';
 import WhatsAppQuoteForm from '../components/WhatsAppQuoteForm.astro';
+
 import { servicesData } from '../data/services';
+import { faqsData } from '../data/faqs';
 import { siteData } from '../data/site';
+import { path } from '../utils/paths';
+
+// Filter primary services (exclude DIY from main 6 grid, keep DIY separate)
+const primaryServices = servicesData.filter(s => s.slug !== 'diy-projects');
+const generalFaqs = faqsData.filter(f => f.category === 'general' || f.category === 'automation');
 ---
 
 <Layout
-  title={`${siteData.companyName} | ${siteData.tagline}`}
-  description="Gate & Guard Projects delivers professional intruder alarms, electric fencing, gate motors, CCTV installation, and access control across Gauteng."
+  title={`${siteData.companyName} | Security, Gate Automation & Access Control`}
+  description="Precision gate automation, electric fencing, CCTV surveillance, and access control for South African residential homes, estates, and commercial premises."
 >
-  <!-- 1 & 2. Hero Section -->
+  <!-- Hero Section -->
   <Hero />
 
-  <!-- 3. Compact Trust Strip -->
+  <!-- Trust Value Bar -->
   <TrustStrip />
 
-  <!-- 4. Services Grid -->
-  <section class="services-section">
+  <!-- Core Services Section (White Background) -->
+  <section class="section-services">
     <div class="container">
-      <SectionHeading
-        eyebrow="Our Security Capabilities"
-        title="Comprehensive Security, Automation & Access"
-        subtitle="Explore our specialised installation, maintenance, and repair services for homes, housing complexes, and business premises."
-        centered={true}
-      />
+      <div class="section-header">
+        <span class="section-eyebrow">Solutions &amp; Systems</span>
+        <h2 class="section-title">Protect What Matters. Make Access Effortless.</h2>
+        <p class="section-lead">
+          From heavy-duty sliding gate motors to high-voltage electric perimeters and 4K CCTV surveillance, we engineer complete protection tailored for your property.
+        </p>
+      </div>
 
       <div class="services-grid">
-        {servicesData.map((service) => (
+        {primaryServices.map((service) => (
           <ServiceCard service={service} />
         ))}
       </div>
+
+      <!-- DIY Supply Callout Banner -->
+      <div class="diy-callout-banner">
+        <div class="diy-banner-content">
+          <span class="diy-badge">Supply &amp; Self-Install</span>
+          <h3>Prefer DIY Security Setup?</h3>
+          <p>We supply pre-programmed gate motor packages, electric fence energizers, and CCTV hardware with guided phone and WhatsApp technical support.</p>
+        </div>
+        <a href={path('/diy-projects')} class="btn-secondary btn-secondary-light">
+          <span>View DIY Hardware Supply</span>
+        </a>
+      </div>
     </div>
   </section>
 
-  <!-- 5. Trust / Why Choose Us Section (includes optional metrics row if configured) -->
-  <TrustWhyChooseUs />
-
-  <!-- 6. Dark "A Safer Tomorrow" Split Section -->
+  <!-- Mid-Page Editorial Feature Block (Charcoal Background) -->
   <SaferTomorrow />
 
-  <!-- 7. Homepage Quick WhatsApp Quote Form Block -->
-  <section class="home-quote-block">
-    <div class="container quote-grid">
-      <div class="quote-intro">
-        <span class="eyebrow-tag">Fast Response Quotes</span>
-        <h2 class="intro-title">Get Your Free Security & Automation Quote</h2>
-        <p class="intro-p">
-          Whether you need a new gate motor, an electric fence COC, CCTV upgrade, or emergency repair, our team is ready to assist.
+  <!-- Proof & Advantage Section (Paper Light Background) -->
+  <TrustWhyChooseUs />
+
+  <!-- FAQ & Quick Quote Section (White Background) -->
+  <section class="section-faq-form">
+    <div class="container grid-faq-form">
+      <div class="faq-col">
+        <span class="section-eyebrow">Frequently Asked Questions</span>
+        <h2 class="section-title">Clear Answers Before You Quote</h2>
+        <p class="faq-intro">
+          Got questions about battery backup cycles, load-shedding resilience, or Electric Fence COCs? We provide transparent guidance.
         </p>
-        <div class="intro-features">
-          <div class="feat-bullet">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--colour-gold-dark)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            <span>Direct WhatsApp transmission — no form delays</span>
-          </div>
-          <div class="feat-bullet">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--colour-gold-dark)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            <span>Transparent estimates for Gauteng suburbs</span>
-          </div>
-          <div class="feat-bullet">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--colour-gold-dark)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            <span>Quality equipment with manufacturer guarantees</span>
-          </div>
-        </div>
+        <FaqList faqs={generalFaqs} />
       </div>
 
-      <div class="quote-form-wrap">
-        <WhatsAppQuoteForm />
+      <div class="form-col" id="quote-form-block">
+        <WhatsAppQuoteForm
+          title="Request a Fast Quote"
+          subtitle="Select your required security service and receive an estimate directly via WhatsApp or email."
+        />
       </div>
     </div>
   </section>
 
-  <!-- 8. Final Strong Quote / Contact CTA -->
-  <QuoteCTA />
+  <!-- Final Lead CTA Banner -->
+  <QuoteCTA
+    title="Ready to Fortify Your Property Line?"
+    subtitle="Contact our technical team today for a transparent, no-obligation evaluation and quote."
+  />
 </Layout>
 
 <style>
-  .services-section {
+  .section-services {
     padding: 5rem 0;
-    background-color: var(--colour-paper);
+    background-color: var(--colour-white);
+  }
+
+  @media (min-width: 992px) {
+    .section-services {
+      padding: 7rem 0;
+    }
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 3.5rem auto;
+  }
+
+  .section-eyebrow {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--colour-gold-deep);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-title {
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    font-weight: 800;
+    color: var(--colour-ink);
+    margin-bottom: 1rem;
+    line-height: 1.1;
+  }
+
+  .section-lead {
+    font-size: 1.125rem;
+    color: var(--colour-muted);
+    line-height: 1.6;
   }
 
   .services-grid {
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    gap: 1.5rem;
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
 
-  @media (min-width: 640px) {
+  @media (min-width: 768px) {
     .services-grid {
       grid-template-columns: repeat(2, 1fr);
     }
@@ -105,63 +155,80 @@ import { siteData } from '../data/site';
     }
   }
 
-  .home-quote-block {
-    padding: 5rem 0;
-    background-color: var(--colour-white);
+  /* DIY Banner */
+  .diy-callout-banner {
+    margin-top: 4rem;
+    background-color: var(--colour-paper);
+    border: 1px solid var(--colour-line);
+    border-left: 4px solid var(--colour-gold);
+    border-radius: var(--radius-card);
+    padding: 2rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: flex-start;
   }
 
-  .quote-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-    align-items: center;
-  }
-
-  @media (min-width: 992px) {
-    .quote-grid {
-      grid-template-columns: 1fr 1.1fr;
+  @media (min-width: 768px) {
+    .diy-callout-banner {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
     }
   }
 
-  .eyebrow-tag {
+  .diy-badge {
     font-family: var(--font-heading);
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     font-weight: 800;
-    color: var(--colour-gold-dark);
-    letter-spacing: 0.1em;
+    color: var(--colour-gold-deep);
     text-transform: uppercase;
+    letter-spacing: 0.08em;
     display: inline-block;
+    margin-bottom: 0.35rem;
+  }
+
+  .diy-banner-content h3 {
+    font-size: 1.5rem;
+    color: var(--colour-ink);
     margin-bottom: 0.5rem;
   }
 
-  .intro-title {
-    font-family: var(--font-heading);
-    font-size: clamp(2.25rem, 4vw, 3rem);
-    font-weight: 800;
-    color: var(--colour-ink);
-    line-height: 1.1;
-    margin-bottom: 1rem;
+  .diy-banner-content p {
+    color: var(--colour-muted);
+    font-size: 0.975rem;
+    max-width: 680px;
+    margin-bottom: 0;
   }
 
-  .intro-p {
+  /* FAQ & Form Section */
+  .section-faq-form {
+    padding: 5rem 0;
+    background-color: var(--colour-paper);
+  }
+
+  @media (min-width: 992px) {
+    .section-faq-form {
+      padding: 7rem 0;
+    }
+  }
+
+  .grid-faq-form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+  }
+
+  @media (min-width: 992px) {
+    .grid-faq-form {
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+    }
+  }
+
+  .faq-intro {
     font-size: 1.05rem;
     color: var(--colour-muted);
-    line-height: 1.6;
-    margin-bottom: 1.75rem;
-  }
-
-  .intro-features {
-    display: flex;
-    flex-direction: column;
-    gap: 0.85rem;
-  }
-
-  .feat-bullet {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: var(--colour-text);
+    margin-bottom: 2rem;
   }
 </style>

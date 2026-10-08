@@ -19,11 +19,11 @@ const currentPath = Astro.url.pathname;
   <div class="top-bar">
     <div class="container top-bar-inner">
       <div class="top-info">
-        <a href={`tel:${siteData.phone}`} class="top-contact">
+        <a href={`tel:${siteData.phone}`} class="top-contact" data-analytics="phone_click" data-placement="header_topbar">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
           <span>{siteData.phoneFormatted}</span>
         </a>
-        <a href={`mailto:${siteData.email}`} class="top-contact hide-mobile">
+        <a href={`mailto:${siteData.email}`} class="top-contact hide-mobile" data-analytics="email_click" data-placement="header_topbar">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
           <span>{siteData.email}</span>
         </a>
@@ -60,7 +60,7 @@ const currentPath = Astro.url.pathname;
 
       <!-- CTA Button -->
       <div class="header-actions">
-        <a href={path('/contact#quote')} class="btn-header-cta">Get a Quote</a>
+        <a href={path('/contact#quote')} class="btn-primary btn-header-cta" data-analytics="quote_cta_click" data-placement="header_desktop">Get a Quote</a>
 
         <!-- Mobile Menu Toggle Button -->
         <button id="menu-toggle" class="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle Navigation Menu">
@@ -86,8 +86,8 @@ const currentPath = Astro.url.pathname;
         })}
       </ul>
       <div class="mobile-menu-cta">
-        <a href={path('/contact#quote')} class="btn-mobile-quote">Get a Quote</a>
-        <a href={`https://wa.me/${siteData.whatsapp}?text=Hello%20Gate%20%26%20Guard%20Projects,%20I%20would%20like%20to%20request%20a%20quote.`} class="btn-mobile-wa" target="_blank" rel="noopener noreferrer">
+        <a href={path('/contact#quote')} class="btn-primary btn-mobile-quote" data-analytics="quote_cta_click" data-placement="mobile_menu">Get a Quote</a>
+        <a href={`https://wa.me/${siteData.whatsapp}?text=Hello%20Gate%20%26%20Guard%20Projects,%20I%20would%20like%20to%20request%20a%20quote.`} class="btn-mobile-wa" target="_blank" rel="noopener noreferrer" data-analytics="whatsapp_click" data-placement="mobile_menu">
           WhatsApp Us
         </a>
       </div>
@@ -213,25 +213,9 @@ const currentPath = Astro.url.pathname;
   }
 
   .btn-header-cta {
-    display: inline-block;
-    background-color: var(--colour-gold);
-    color: var(--colour-ink);
-    font-family: var(--font-heading);
-    font-weight: 800;
+    min-height: 40px;
+    padding: 0.45rem 1.125rem;
     font-size: 0.95rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    padding: 0.5rem 1.125rem;
-    border-radius: var(--radius-sm);
-    box-shadow: var(--shadow-sm);
-    transition: all var(--transition-fast);
-  }
-
-  .btn-header-cta:hover {
-    background-color: var(--colour-gold-bright);
-    color: var(--colour-ink);
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-gold);
   }
 
   .menu-toggle {
@@ -321,27 +305,21 @@ const currentPath = Astro.url.pathname;
   }
 
   .btn-mobile-quote {
-    display: block;
-    text-align: center;
-    background-color: var(--colour-gold);
-    color: var(--colour-ink);
-    font-family: var(--font-heading);
-    font-weight: 800;
-    font-size: 1.1rem;
-    padding: 0.75rem;
-    border-radius: var(--radius-sm);
+    width: 100%;
   }
 
   .btn-mobile-wa {
     display: block;
     text-align: center;
     background-color: #25d366;
-    color: #ffffff;
+    color: #ffffff !important;
     font-family: var(--font-heading);
     font-weight: 800;
     font-size: 1.1rem;
     padding: 0.75rem;
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-control);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
   }
 
   @media (max-width: 600px) {
@@ -351,16 +329,39 @@ const currentPath = Astro.url.pathname;
   }
 </style>
 
-<script>
-  const toggleBtn = document.getElementById('menu-toggle');
-  const menuPanel = document.getElementById('mobile-menu');
+<script is:inline>
+  // Mobile Menu Toggle & Lightweight Analytics Setup
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggleBtn = document.getElementById('menu-toggle');
+    const menuPanel = document.getElementById('mobile-menu');
 
-  if (toggleBtn && menuPanel) {
-    toggleBtn.addEventListener('click', () => {
-      const expanded = toggleBtn.getAttribute('aria-expanded') === 'true';
-      toggleBtn.setAttribute('aria-expanded', String(!expanded));
-      menuPanel.classList.toggle('is-open');
-      menuPanel.setAttribute('aria-hidden', String(expanded));
+    if (toggleBtn && menuPanel) {
+      toggleBtn.addEventListener('click', () => {
+        const expanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+        toggleBtn.setAttribute('aria-expanded', String(!expanded));
+        menuPanel.classList.toggle('is-open');
+        menuPanel.setAttribute('aria-hidden', String(expanded));
+      });
+    }
+
+    // Lightweight Analytics Event Helper (Disabled when no analytics provider is configured)
+    window.trackAnalyticsEvent = function(eventName, payload = {}) {
+      if (typeof window.dataLayer !== 'undefined') {
+        window.dataLayer.push({ event: eventName, ...payload });
+      } else {
+        // Safe no-op log in dev mode
+        console.debug('[Analytics Hook]', eventName, payload);
+      }
+    };
+
+    // Global Click Listener for Analytics Hooks
+    document.addEventListener('click', (e) => {
+      const target = e.target.closest('[data-analytics]');
+      if (target) {
+        const eventName = target.getAttribute('data-analytics');
+        const placement = target.getAttribute('data-placement') || 'general';
+        window.trackAnalyticsEvent(eventName, { placement });
+      }
     });
-  }
+  });
 </script>

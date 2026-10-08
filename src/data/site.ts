@@ -28,7 +28,7 @@ export interface SiteData {
     weekdays: string;
     saturday: string;
     sunday: string;
-    emergency: string;
+    emergency?: string;
   };
   socialLinks: {
     facebook?: string;
@@ -56,31 +56,28 @@ export const siteData: SiteData = {
   tagline: "Protect. Automate. Connect.",
   descriptor: "Security | Automation | Access | Solutions",
   siteUrl: "https://rynomster.github.io/gateandguard.co.za",
-  phone: "+27600000000", // TODO: Client to provide exact primary phone
-  phoneFormatted: "060 000 0000",
-  whatsapp: "27600000000", // TODO: Client to provide exact WhatsApp number (country code format without +)
-  whatsappFormatted: "060 000 0000",
-  email: "info@gateandguard.co.za", // TODO: Client to confirm primary enquiry email
+  phone: "+27600000000", // Pending client verification
+  phoneFormatted: "060 000 0000", // Pending client verification
+  whatsapp: "27600000000", // Pending client verification
+  whatsappFormatted: "060 000 0000", // Pending client verification
+  email: "info@gateandguard.co.za", // Pending client verification
   address: {
     city: "Johannesburg",
     province: "Gauteng",
-    display: "Gauteng & Surrounding Areas, South Africa"
+    display: "South Africa" // Kept neutral until primary territory confirmed
   },
   serviceAreas: [
-    "Sandton",
-    "Randburg",
-    "Midrand",
-    "Centurion",
-    "Pretoria",
-    "East Rand",
-    "West Rand",
-    "Johannesburg South"
+    // Standard target service areas - subject to final client confirmation
+    "Residential Estates",
+    "Commercial Properties",
+    "Suburban Residences",
+    "Industrial Complexes"
   ],
   businessHours: {
     weekdays: "07:30 - 17:00",
     saturday: "08:00 - 13:00",
-    sunday: "Closed (Emergency Callouts Available)",
-    emergency: "24/7 Callouts Available"
+    sunday: "Closed",
+    emergency: undefined // Disabled until emergency SLA is verified
   },
   socialLinks: {
     whatsappUrl: "https://wa.me/27600000000"
@@ -88,14 +85,10 @@ export const siteData: SiteData = {
   cocDetails: {
     certified: true,
     fencingCocAvailable: true,
-    electricalCocAvailable: true,
-    note: "Certificates of Compliance (COC) issued for qualified electric fence and perimeter installations."
+    electricalCocAvailable: false,
+    note: "Electric fence system compliance inspections and Certificates of Compliance (EFSCOC) issued via registered electric fence system installers."
   },
-  // Optional metrics - leave empty or populated with confirmed figures only
-  trustMetrics: [
-    // { label: "Completed Projects", value: "500+" },
-    // { label: "Client Satisfaction", value: "99%" },
-  ],
+  trustMetrics: [],
   trustStripItems: [
     { title: "Safer Homes", subtitle: "Perimeter & Alarm Protection", icon: "home" },
     { title: "Smarter Businesses", subtitle: "Access Control & CCTV Integration", icon: "building" },

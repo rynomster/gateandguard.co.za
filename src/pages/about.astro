@@ -1,87 +1,110 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import QuoteCTA from '../components/QuoteCTA.astro';
+import TrustStrip from '../components/TrustStrip.astro';
 import { siteData } from '../data/site';
+import { path } from '../utils/paths';
 ---
 
 <Layout
   title={`About Us | ${siteData.companyName}`}
-  description="Learn about Gate & Guard Projects — South African specialists in residential and commercial perimeter security, gate automation, and access control solutions."
+  description="Learn about Gate & Guard Projects: South African perimeter security, gate motor automation, electric fencing, and CCTV specialists."
 >
   <div class="page-header">
     <div class="container">
-      <span class="header-badge">Who We Are</span>
-      <h1 class="page-title">About Gate &amp; Guard Projects</h1>
+      <span class="header-badge">Company Overview</span>
+      <h1 class="page-title">Protecting What Matters Most</h1>
       <p class="page-lead">
-        Protecting homes, residential complexes, and business premises across Gauteng with reliable security systems, automated gate barriers, and smart access control.
+        Dedicated security and automation specialists delivering reliable perimeter protection, gate automation, and smart access control.
       </p>
     </div>
   </div>
 
-  <section class="about-content-section">
-    <div class="container about-grid">
-      <div class="about-main">
-        <h2 class="subhead">Our Core Mission</h2>
-        <p>
-          At Gate &amp; Guard Projects, our goal is straightforward: to deliver total peace of mind through practical, robust, and beautifully installed security technology. We understand the specific physical security threats and infrastructure challenges present in South Africa, including power outages and load-shedding.
-        </p>
-        <p>
-          Whether securing a single suburban driveway gate or engineering a complete access control solution for an industrial warehouse, we prioritize long-term durability, clean installation aesthetics, and rapid after-sales assistance.
-        </p>
+  <section class="about-section">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-main">
+          <h2 class="subhead">Our Mission &amp; Service Philosophy</h2>
+          <p>
+            At <strong>{siteData.companyName}</strong>, we believe every property deserves robust, intuitive, and dependable security. In South Africa, boundary lines are the first line of defense. That is why we engineer security solutions designed to operate seamlessly under real daily conditions, including load-shedding and high-use traffic.
+          </p>
+          <p>
+            From single-family residential driveways to multi-tenant residential estates and commercial industrial facilities, our work centers on precision installation, clean wiring standards, and responsive support.
+          </p>
 
-        <div class="values-list">
-          <div class="val-card">
-            <h3>Protect</h3>
-            <p>Deploying multi-layered perimeter defense including high-voltage electric fencing, intruder alarms, and early warning motion sensors.</p>
+          <h2 class="subhead mt-large">Core Operational Pillars</h2>
+          <div class="values-grid">
+            <div class="val-card">
+              <div class="val-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+              </div>
+              <h3>Protect</h3>
+              <p>Deploying multi-layered perimeter defense including high-voltage electric fencing, intruder alarms, and early-warning motion sensors.</p>
+            </div>
+            <div class="val-card">
+              <div class="val-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect></svg>
+              </div>
+              <h3>Automate</h3>
+              <p>Installing high-speed sliding gate motors, sectional garage automation, and heavy-duty barriers with reliable lithium battery backups.</p>
+            </div>
+            <div class="val-card">
+              <div class="val-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+              </div>
+              <h3>Connect</h3>
+              <p>Integrating clear audio/video intercoms, mobile phone app access, and HD CCTV camera networks for instant remote oversight.</p>
+            </div>
           </div>
-          <div class="val-card">
-            <h3>Automate</h3>
-            <p>Installing high-speed sliding gate motors, sectional garage automation, and heavy-duty barriers with reliable lithium battery backups.</p>
-          </div>
-          <div class="val-card">
-            <h3>Connect</h3>
-            <p>Integrating clear audio/video intercoms, mobile phone app access, and HD CCTV camera networks for instant remote oversight.</p>
-          </div>
+
+          <h2 class="subhead mt-large">Service Approach &amp; Quality Commitment</h2>
+          <p>
+            We do not believe in generic one-size-fits-all security. Every property features unique boundary geometries, traffic volumes, and user access requirements. Our technical team conducts on-site evaluations to specify equipment that matches your exact operational budget and threat profile.
+          </p>
         </div>
 
-        <h2 class="subhead mt-large">Service Approach &amp; Quality Commitment</h2>
-        <p>
-          We do not believe in one-size-fits-all security. Every property features unique boundary geometries, traffic volumes, and user access requirements. Our technical team conducts thorough on-site evaluations to specify equipment that matches your exact budget and threat profile.
-        </p>
-      </div>
+        <div class="about-sidebar">
+          <div class="sidebar-card">
+            <h3>Verified Technical Standards</h3>
+            <ul class="check-list">
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--colour-gold-deep)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Electric Fence COC (EFSCOC) Inspections</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--colour-gold-deep)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Deep-cycle &amp; Lithium Load-Shedding Backups</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--colour-gold-deep)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Trusted South African Equipment Brands</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--colour-gold-deep)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Direct Mobile WhatsApp Technical Quotes</span>
+              </li>
+            </ul>
 
-      <div class="about-sidebar">
-        <div class="info-box">
-          <h3 class="box-title">Company Snapshot</h3>
-          <ul class="info-list">
-            <li><strong>Company Name:</strong> {siteData.companyName}</li>
-            <li><strong>Primary Focus:</strong> Residential &amp; Commercial Security</li>
-            <li><strong>Service Area:</strong> {siteData.address?.display}</li>
-            <li><strong>Contact Phone:</strong> {siteData.phoneFormatted}</li>
-            <li><strong>Primary Email:</strong> {siteData.email}</li>
-          </ul>
-        </div>
-
-        <div class="info-box areas-box">
-          <h3 class="box-title">Gauteng Regions Serviced</h3>
-          <ul class="areas-pills">
-            {siteData.serviceAreas.map((area) => (
-              <li class="area-pill">{area}</li>
-            ))}
-          </ul>
+            <div class="sidebar-cta-box">
+              <p>Need a technical assessment or system upgrade?</p>
+              <a href={path('/contact#quote')} class="btn-primary btn-sidebar-cta">Request Assessment</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <QuoteCTA />
+  <TrustStrip />
+
+  <QuoteCTA title="Let's Discuss Your Security Needs" subtitle="Our technicians are ready to assist with gate motor repairs, fence upgrades, and CCTV installations." />
 </Layout>
 
 <style>
   .page-header {
     background-color: var(--colour-charcoal);
     color: var(--colour-white);
-    padding: 4rem 0 3.5rem 0;
+    padding: 4.5rem 0 3.5rem 0;
     border-bottom: 2px solid var(--colour-gold);
   }
 
@@ -97,40 +120,37 @@ import { siteData } from '../data/site';
   }
 
   .page-title {
-    font-family: var(--font-heading);
-    font-size: clamp(2.5rem, 5vw, 3.75rem);
+    font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 800;
     line-height: 1.1;
-    margin-bottom: 0.75rem;
+    margin-bottom: 1rem;
   }
 
   .page-lead {
     font-size: 1.15rem;
     color: var(--colour-silver);
-    max-width: 750px;
-    line-height: 1.6;
+    max-width: 680px;
   }
 
-  .about-content-section {
-    padding: 4rem 0;
-    background-color: var(--colour-paper);
+  .about-section {
+    padding: 4.5rem 0;
+    background-color: var(--colour-white);
   }
 
   .about-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 3.5rem;
   }
 
   @media (min-width: 992px) {
     .about-grid {
-      grid-template-columns: 1.8fr 1fr;
+      grid-template-columns: 16fr 8fr;
     }
   }
 
   .subhead {
-    font-family: var(--font-heading);
-    font-size: 1.85rem;
+    font-size: 1.75rem;
     font-weight: 800;
     color: var(--colour-ink);
     margin-bottom: 1rem;
@@ -140,94 +160,108 @@ import { siteData } from '../data/site';
     margin-top: 2.5rem;
   }
 
-  p {
-    font-size: 1rem;
+  .about-main p {
+    font-size: 1.05rem;
     color: var(--colour-text);
     line-height: 1.7;
     margin-bottom: 1.25rem;
   }
 
-  .values-list {
+  .values-grid {
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    gap: 1.25rem;
-    margin: 2rem 0;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
   }
 
-  @media (min-width: 640px) {
-    .values-list {
+  @media (min-width: 768px) {
+    .values-grid {
       grid-template-columns: repeat(3, 1fr);
     }
   }
 
   .val-card {
-    background-color: var(--colour-white);
+    background-color: var(--colour-paper);
     border: 1px solid var(--colour-line);
-    border-top: 3px solid var(--colour-gold);
-    border-radius: var(--radius-sm);
-    padding: 1.25rem;
+    border-radius: var(--radius-card);
+    padding: 1.5rem;
+  }
+
+  .val-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background-color: var(--colour-charcoal);
+    color: var(--colour-gold-bright);
+    border-radius: var(--radius-control);
+    margin-bottom: 1rem;
   }
 
   .val-card h3 {
-    font-family: var(--font-heading);
-    font-size: 1.35rem;
-    font-weight: 800;
-    color: var(--colour-ink);
+    font-size: 1.25rem;
     margin-bottom: 0.5rem;
   }
 
   .val-card p {
-    font-size: 0.875rem;
+    font-size: 0.925rem;
     color: var(--colour-muted);
+    margin-bottom: 0;
     line-height: 1.5;
-    margin: 0;
   }
 
-  .info-box {
-    background-color: var(--colour-white);
+  /* Sidebar */
+  .sidebar-card {
+    background-color: var(--colour-paper);
     border: 1px solid var(--colour-line);
-    border-radius: var(--radius-md);
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
-    box-shadow: var(--shadow-sm);
+    border-top: 4px solid var(--colour-gold);
+    border-radius: var(--radius-card);
+    padding: 1.75rem;
+    position: sticky;
+    top: 90px;
   }
 
-  .box-title {
-    font-family: var(--font-heading);
+  .sidebar-card h3 {
     font-size: 1.35rem;
-    font-weight: 800;
     color: var(--colour-ink);
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--colour-paper);
+    margin-bottom: 1.25rem;
   }
 
-  .info-list {
+  .check-list {
     list-style: none;
-    padding: 0;
-    margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
-    font-size: 0.9rem;
+    gap: 0.85rem;
+    margin-bottom: 1.75rem;
   }
 
-  .areas-pills {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  .check-list li {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.95rem;
+    color: var(--colour-text);
   }
 
-  .area-pill {
-    background-color: var(--colour-paper);
-    color: var(--colour-ink);
-    font-size: 0.85rem;
+  .check-list svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .sidebar-cta-box {
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--colour-line);
+  }
+
+  .sidebar-cta-box p {
+    font-size: 0.95rem;
     font-weight: 600;
-    padding: 0.35rem 0.75rem;
-    border-radius: var(--radius-sm);
-    border: 1px solid var(--colour-line);
+    color: var(--colour-ink);
+    margin-bottom: 0.85rem;
+  }
+
+  .btn-sidebar-cta {
+    width: 100%;
   }
 </style>
