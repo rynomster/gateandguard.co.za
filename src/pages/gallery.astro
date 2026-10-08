@@ -1,0 +1,69 @@
+---
+import Layout from '../layouts/Layout.astro';
+import GalleryGrid from '../components/GalleryGrid.astro';
+import QuoteCTA from '../components/QuoteCTA.astro';
+import { siteData } from '../data/site';
+---
+
+<Layout
+  title={`Project Gallery | ${siteData.companyName}`}
+  description="View completed Gate & Guard Projects installations in Gauteng: sliding gate motors, wall-top electric fences, 4K CCTV systems, and access control."
+>
+  <div class="page-header">
+    <div class="container">
+      <span class="header-badge">Workmanship Portfolio</span>
+      <h1 class="page-title">Completed Project Gallery</h1>
+      <p class="page-lead">
+        A showcase of clean, durable security installations and automation upgrades across residential homes, complexes, and commercial properties.
+      </p>
+    </div>
+  </div>
+
+  <section class="gallery-section">
+    <div class="container">
+      <GalleryGrid />
+    </div>
+  </section>
+
+  <QuoteCTA title="Impressed by Our Workmanship?" subtitle="Contact us today to schedule a site assessment for your home or complex." />
+</Layout>
+
+<style>
+  .page-header {
+    background-color: var(--colour-charcoal);
+    color: var(--colour-white);
+    padding: 4rem 0 3.5rem 0;
+    border-bottom: 2px solid var(--colour-gold);
+  }
+
+  .header-badge {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--colour-gold-bright);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+  }
+
+  .page-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 5vw, 3.75rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 0.75rem;
+  }
+
+  .page-lead {
+    font-size: 1.15rem;
+    color: var(--colour-silver);
+    max-width: 750px;
+    line-height: 1.6;
+  }
+
+  .gallery-section {
+    padding: 4rem 0;
+    background-color: var(--colour-paper);
+  }
+</style>

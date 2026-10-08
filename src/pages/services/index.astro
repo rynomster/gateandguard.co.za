@@ -1,0 +1,99 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import QuoteCTA from '../../components/QuoteCTA.astro';
+import { servicesData } from '../../data/services';
+import { siteData } from '../../data/site';
+---
+
+<Layout
+  title={`Security & Automation Services | ${siteData.companyName}`}
+  description="Explore our full range of security services in Gauteng: gate automation, electric fencing, CCTV installation, intruder alarms, access control, intercoms, and DIY kits."
+>
+  <div class="page-header">
+    <div class="container">
+      <span class="header-badge">Our Solutions</span>
+      <h1 class="page-title">Security &amp; Automation Services</h1>
+      <p class="page-lead">
+        Tailored technical solutions for perimeter defense, automated gate access, video surveillance, and electrical fence compliance across Gauteng.
+      </p>
+    </div>
+  </div>
+
+  <section class="services-list-section">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Turnkey Security Offerings"
+        title="Professional Installations, Upgrades &amp; Repairs"
+        subtitle="Click any service below for in-depth technical details, common use cases, included hardware, and FAQs."
+      />
+
+      <div class="services-grid">
+        {servicesData.map((service) => (
+          <ServiceCard service={service} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <QuoteCTA />
+</Layout>
+
+<style>
+  .page-header {
+    background-color: var(--colour-charcoal);
+    color: var(--colour-white);
+    padding: 4rem 0 3.5rem 0;
+    border-bottom: 2px solid var(--colour-gold);
+  }
+
+  .header-badge {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--colour-gold-bright);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+  }
+
+  .page-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 5vw, 3.75rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 0.75rem;
+  }
+
+  .page-lead {
+    font-size: 1.15rem;
+    color: var(--colour-silver);
+    max-width: 750px;
+    line-height: 1.6;
+  }
+
+  .services-list-section {
+    padding: 4rem 0;
+    background-color: var(--colour-paper);
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .services-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .services-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

@@ -1,0 +1,361 @@
+---
+import { siteData } from '../data/site';
+
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/services', label: 'Services' },
+  { href: '/gallery', label: 'Gallery' },
+  { href: '/coc-certification', label: 'COC Certification' },
+  { href: '/diy-projects', label: 'DIY Projects' },
+  { href: '/contact', label: 'Contact' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="site-header" id="main-header">
+  <div class="top-bar">
+    <div class="container top-bar-inner">
+      <div class="top-info">
+        <a href={`tel:${siteData.phone}`} class="top-contact">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          <span>{siteData.phoneFormatted}</span>
+        </a>
+        <a href={`mailto:${siteData.email}`} class="top-contact hide-mobile">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          <span>{siteData.email}</span>
+        </a>
+      </div>
+      <div class="top-hours hide-mobile">
+        <span>Mon - Fri: {siteData.businessHours.weekdays}</span>
+      </div>
+    </div>
+  </div>
+
+  <nav class="main-nav" aria-label="Main Navigation">
+    <div class="container nav-inner">
+      <!-- Brand Logo -->
+      <a href="/" class="brand-logo" aria-label="Gate and Guard Projects Home">
+        <img src="/assets/brand/logo-horizontal.svg" alt="Gate & Guard Projects Logo" class="brand-img" width="220" height="42" />
+      </a>
+
+      <!-- Desktop Nav List -->
+      <ul class="nav-links">
+        {navLinks.map((link) => {
+          const isActive = link.href === '/' ? currentPath === '/' : currentPath.startsWith(link.href);
+          return (
+            <li>
+              <a href={link.href} class:list={['nav-link', { active: isActive }]} aria-current={isActive ? 'page' : undefined}>
+                {link.label}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+
+      <!-- CTA Button -->
+      <div class="header-actions">
+        <a href="/contact#quote" class="btn-header-cta">Get a Quote</a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="menu-toggle" class="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle Navigation Menu">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Nav Overlay -->
+    <div id="mobile-menu" class="mobile-menu-panel" aria-hidden="true">
+      <ul class="mobile-nav-links">
+        {navLinks.map((link) => {
+          const isActive = link.href === '/' ? currentPath === '/' : currentPath.startsWith(link.href);
+          return (
+            <li>
+              <a href={link.href} class:list={['mobile-nav-link', { active: isActive }]}>
+                {link.label}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+      <div class="mobile-menu-cta">
+        <a href="/contact#quote" class="btn-mobile-quote">Get a Quote</a>
+        <a href={`https://wa.me/${siteData.whatsapp}?text=Hello%20Gate%20%26%20Guard%20Projects,%20I%20would%20like%20to%20request%20a%20quote.`} class="btn-mobile-wa" target="_blank" rel="noopener noreferrer">
+          WhatsApp Us
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: var(--colour-charcoal);
+    box-shadow: var(--shadow-md);
+    transition: background-color var(--transition-fast);
+  }
+
+  .top-bar {
+    background-color: var(--colour-ink);
+    border-bottom: 1px solid var(--colour-line-dark);
+    font-size: 0.8125rem;
+    color: var(--colour-silver);
+    padding: 0.375rem 0;
+  }
+
+  .top-bar-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .top-info {
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+  }
+
+  .top-contact {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--colour-silver-light);
+    font-weight: 500;
+  }
+
+  .top-contact:hover {
+    color: var(--colour-gold-bright);
+  }
+
+  .top-hours {
+    color: var(--colour-muted);
+  }
+
+  .main-nav {
+    padding: 0.75rem 0;
+    background-color: var(--colour-charcoal);
+    position: relative;
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .brand-logo {
+    display: flex;
+    align-items: center;
+  }
+
+  .brand-img {
+    height: 42px;
+    width: auto;
+  }
+
+  .nav-links {
+    display: none;
+    list-style: none;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  @media (min-width: 992px) {
+    .nav-links {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .nav-link {
+    color: var(--colour-silver-light);
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    padding: 0.25rem 0;
+    position: relative;
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    color: var(--colour-gold-bright);
+  }
+
+  .nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--colour-gold);
+    border-radius: 2px;
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .btn-header-cta {
+    display: inline-block;
+    background-color: var(--colour-gold);
+    color: var(--colour-ink);
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.5rem 1.125rem;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-fast);
+  }
+
+  .btn-header-cta:hover {
+    background-color: var(--colour-gold-bright);
+    color: var(--colour-ink);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-gold);
+  }
+
+  .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+  }
+
+  @media (min-width: 992px) {
+    .menu-toggle {
+      display: none;
+    }
+  }
+
+  .hamburger-bar {
+    width: 100%;
+    height: 3px;
+    background-color: var(--colour-silver-light);
+    border-radius: 2px;
+    transition: transform var(--transition-fast), opacity var(--transition-fast);
+  }
+
+  .menu-toggle[aria-expanded="true"] .hamburger-bar:nth-child(1) {
+    transform: translateY(8.5px) rotate(45deg);
+  }
+
+  .menu-toggle[aria-expanded="true"] .hamburger-bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle[aria-expanded="true"] .hamburger-bar:nth-child(3) {
+    transform: translateY(-8.5px) rotate(-45deg);
+  }
+
+  /* Mobile Menu Panel */
+  .mobile-menu-panel {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--colour-ink);
+    border-bottom: 2px solid var(--colour-gold);
+    padding: 1.5rem 1.25rem;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .mobile-menu-panel.is-open {
+    display: block;
+  }
+
+  .mobile-nav-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .mobile-nav-link {
+    display: block;
+    color: var(--colour-silver-light);
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--colour-line-dark);
+  }
+
+  .mobile-nav-link.active,
+  .mobile-nav-link:hover {
+    color: var(--colour-gold-bright);
+  }
+
+  .mobile-menu-cta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .btn-mobile-quote {
+    display: block;
+    text-align: center;
+    background-color: var(--colour-gold);
+    color: var(--colour-ink);
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.1rem;
+    padding: 0.75rem;
+    border-radius: var(--radius-sm);
+  }
+
+  .btn-mobile-wa {
+    display: block;
+    text-align: center;
+    background-color: #25d366;
+    color: #ffffff;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.1rem;
+    padding: 0.75rem;
+    border-radius: var(--radius-sm);
+  }
+
+  @media (max-width: 600px) {
+    .hide-mobile {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const toggleBtn = document.getElementById('menu-toggle');
+  const menuPanel = document.getElementById('mobile-menu');
+
+  if (toggleBtn && menuPanel) {
+    toggleBtn.addEventListener('click', () => {
+      const expanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+      toggleBtn.setAttribute('aria-expanded', String(!expanded));
+      menuPanel.classList.toggle('is-open');
+      menuPanel.setAttribute('aria-hidden', String(expanded));
+    });
+  }
+</script>

@@ -1,0 +1,233 @@
+---
+import Layout from '../layouts/Layout.astro';
+import QuoteCTA from '../components/QuoteCTA.astro';
+import { siteData } from '../data/site';
+---
+
+<Layout
+  title={`About Us | ${siteData.companyName}`}
+  description="Learn about Gate & Guard Projects — South African specialists in residential and commercial perimeter security, gate automation, and access control solutions."
+>
+  <div class="page-header">
+    <div class="container">
+      <span class="header-badge">Who We Are</span>
+      <h1 class="page-title">About Gate &amp; Guard Projects</h1>
+      <p class="page-lead">
+        Protecting homes, residential complexes, and business premises across Gauteng with reliable security systems, automated gate barriers, and smart access control.
+      </p>
+    </div>
+  </div>
+
+  <section class="about-content-section">
+    <div class="container about-grid">
+      <div class="about-main">
+        <h2 class="subhead">Our Core Mission</h2>
+        <p>
+          At Gate &amp; Guard Projects, our goal is straightforward: to deliver total peace of mind through practical, robust, and beautifully installed security technology. We understand the specific physical security threats and infrastructure challenges present in South Africa, including power outages and load-shedding.
+        </p>
+        <p>
+          Whether securing a single suburban driveway gate or engineering a complete access control solution for an industrial warehouse, we prioritize long-term durability, clean installation aesthetics, and rapid after-sales assistance.
+        </p>
+
+        <div class="values-list">
+          <div class="val-card">
+            <h3>Protect</h3>
+            <p>Deploying multi-layered perimeter defense including high-voltage electric fencing, intruder alarms, and early warning motion sensors.</p>
+          </div>
+          <div class="val-card">
+            <h3>Automate</h3>
+            <p>Installing high-speed sliding gate motors, sectional garage automation, and heavy-duty barriers with reliable lithium battery backups.</p>
+          </div>
+          <div class="val-card">
+            <h3>Connect</h3>
+            <p>Integrating clear audio/video intercoms, mobile phone app access, and HD CCTV camera networks for instant remote oversight.</p>
+          </div>
+        </div>
+
+        <h2 class="subhead mt-large">Service Approach &amp; Quality Commitment</h2>
+        <p>
+          We do not believe in one-size-fits-all security. Every property features unique boundary geometries, traffic volumes, and user access requirements. Our technical team conducts thorough on-site evaluations to specify equipment that matches your exact budget and threat profile.
+        </p>
+      </div>
+
+      <div class="about-sidebar">
+        <div class="info-box">
+          <h3 class="box-title">Company Snapshot</h3>
+          <ul class="info-list">
+            <li><strong>Company Name:</strong> {siteData.companyName}</li>
+            <li><strong>Primary Focus:</strong> Residential &amp; Commercial Security</li>
+            <li><strong>Service Area:</strong> {siteData.address?.display}</li>
+            <li><strong>Contact Phone:</strong> {siteData.phoneFormatted}</li>
+            <li><strong>Primary Email:</strong> {siteData.email}</li>
+          </ul>
+        </div>
+
+        <div class="info-box areas-box">
+          <h3 class="box-title">Gauteng Regions Serviced</h3>
+          <ul class="areas-pills">
+            {siteData.serviceAreas.map((area) => (
+              <li class="area-pill">{area}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <QuoteCTA />
+</Layout>
+
+<style>
+  .page-header {
+    background-color: var(--colour-charcoal);
+    color: var(--colour-white);
+    padding: 4rem 0 3.5rem 0;
+    border-bottom: 2px solid var(--colour-gold);
+  }
+
+  .header-badge {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--colour-gold-bright);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+  }
+
+  .page-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 5vw, 3.75rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 0.75rem;
+  }
+
+  .page-lead {
+    font-size: 1.15rem;
+    color: var(--colour-silver);
+    max-width: 750px;
+    line-height: 1.6;
+  }
+
+  .about-content-section {
+    padding: 4rem 0;
+    background-color: var(--colour-paper);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  @media (min-width: 992px) {
+    .about-grid {
+      grid-template-columns: 1.8fr 1fr;
+    }
+  }
+
+  .subhead {
+    font-family: var(--font-heading);
+    font-size: 1.85rem;
+    font-weight: 800;
+    color: var(--colour-ink);
+    margin-bottom: 1rem;
+  }
+
+  .mt-large {
+    margin-top: 2.5rem;
+  }
+
+  p {
+    font-size: 1rem;
+    color: var(--colour-text);
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+
+  .values-list {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.25rem;
+    margin: 2rem 0;
+  }
+
+  @media (min-width: 640px) {
+    .values-list {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .val-card {
+    background-color: var(--colour-white);
+    border: 1px solid var(--colour-line);
+    border-top: 3px solid var(--colour-gold);
+    border-radius: var(--radius-sm);
+    padding: 1.25rem;
+  }
+
+  .val-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--colour-ink);
+    margin-bottom: 0.5rem;
+  }
+
+  .val-card p {
+    font-size: 0.875rem;
+    color: var(--colour-muted);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .info-box {
+    background-color: var(--colour-white);
+    border: 1px solid var(--colour-line);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .box-title {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--colour-ink);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--colour-paper);
+  }
+
+  .info-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .areas-pills {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .area-pill {
+    background-color: var(--colour-paper);
+    color: var(--colour-ink);
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.35rem 0.75rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--colour-line);
+  }
+</style>

@@ -1,0 +1,167 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import TrustStrip from '../components/TrustStrip.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import TrustWhyChooseUs from '../components/TrustWhyChooseUs.astro';
+import SaferTomorrow from '../components/SaferTomorrow.astro';
+import QuoteCTA from '../components/QuoteCTA.astro';
+import WhatsAppQuoteForm from '../components/WhatsAppQuoteForm.astro';
+import { servicesData } from '../data/services';
+import { siteData } from '../data/site';
+---
+
+<Layout
+  title={`${siteData.companyName} | ${siteData.tagline}`}
+  description="Gate & Guard Projects delivers professional intruder alarms, electric fencing, gate motors, CCTV installation, and access control across Gauteng."
+>
+  <!-- 1 & 2. Hero Section -->
+  <Hero />
+
+  <!-- 3. Compact Trust Strip -->
+  <TrustStrip />
+
+  <!-- 4. Services Grid -->
+  <section class="services-section">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Our Security Capabilities"
+        title="Comprehensive Security, Automation & Access"
+        subtitle="Explore our specialised installation, maintenance, and repair services for homes, housing complexes, and business premises."
+        centered={true}
+      />
+
+      <div class="services-grid">
+        {servicesData.map((service) => (
+          <ServiceCard service={service} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Trust / Why Choose Us Section (includes optional metrics row if configured) -->
+  <TrustWhyChooseUs />
+
+  <!-- 6. Dark "A Safer Tomorrow" Split Section -->
+  <SaferTomorrow />
+
+  <!-- 7. Homepage Quick WhatsApp Quote Form Block -->
+  <section class="home-quote-block">
+    <div class="container quote-grid">
+      <div class="quote-intro">
+        <span class="eyebrow-tag">Fast Response Quotes</span>
+        <h2 class="intro-title">Get Your Free Security & Automation Quote</h2>
+        <p class="intro-p">
+          Whether you need a new gate motor, an electric fence COC, CCTV upgrade, or emergency repair, our team is ready to assist.
+        </p>
+        <div class="intro-features">
+          <div class="feat-bullet">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--colour-gold-dark)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Direct WhatsApp transmission — no form delays</span>
+          </div>
+          <div class="feat-bullet">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--colour-gold-dark)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Transparent estimates for Gauteng suburbs</span>
+          </div>
+          <div class="feat-bullet">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--colour-gold-dark)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Quality equipment with manufacturer guarantees</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="quote-form-wrap">
+        <WhatsAppQuoteForm />
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Final Strong Quote / Contact CTA -->
+  <QuoteCTA />
+</Layout>
+
+<style>
+  .services-section {
+    padding: 5rem 0;
+    background-color: var(--colour-paper);
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .services-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .services-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .home-quote-block {
+    padding: 5rem 0;
+    background-color: var(--colour-white);
+  }
+
+  .quote-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    align-items: center;
+  }
+
+  @media (min-width: 992px) {
+    .quote-grid {
+      grid-template-columns: 1fr 1.1fr;
+    }
+  }
+
+  .eyebrow-tag {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--colour-gold-dark);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+  }
+
+  .intro-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.25rem, 4vw, 3rem);
+    font-weight: 800;
+    color: var(--colour-ink);
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+
+  .intro-p {
+    font-size: 1.05rem;
+    color: var(--colour-muted);
+    line-height: 1.6;
+    margin-bottom: 1.75rem;
+  }
+
+  .intro-features {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .feat-bullet {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--colour-text);
+  }
+</style>

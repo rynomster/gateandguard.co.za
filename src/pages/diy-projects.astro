@@ -1,0 +1,238 @@
+---
+import Layout from '../layouts/Layout.astro';
+import QuoteCTA from '../components/QuoteCTA.astro';
+import WhatsAppQuoteForm from '../components/WhatsAppQuoteForm.astro';
+import { siteData } from '../data/site';
+
+const diyKits = [
+  {
+    title: "Sliding Gate Motor DIY Kit",
+    desc: "Includes heavy-duty motor unit, 2 remotes, lithium battery, base plate, and 4 meters of rack gear.",
+    brand: "Centurion / ET Nice"
+  },
+  {
+    title: "Wall-Top Electric Fence Starter Bundle",
+    desc: "Mains/battery energizer box, 8-strand brackets, high-tensile wire roll, tensioners, and warning signs.",
+    brand: "Nemtek / Stafix"
+  },
+  {
+    title: "Plug-and-Play HD CCTV Camera Set",
+    desc: "4-Channel NVR recorder, 4 full-color night vision IP cameras, pre-crimped cables, and mobile app guide.",
+    brand: "Hikvision / Uniview"
+  },
+  {
+    title: "Wireless Alarm Starter Kit",
+    desc: "Control panel, wireless keypad, 2 outdoor beams, 2 indoor passives, and loud siren.",
+    brand: "Paradox / IDS"
+  }
+];
+---
+
+<Layout
+  title={`DIY Security Hardware Kits & Guided Advice | ${siteData.companyName}`}
+  description="Supply-only security hardware, pre-configured gate motor packages, electric fence bundles, and telephonic technical guidance for hands-on homeowners."
+>
+  <div class="page-header">
+    <div class="container">
+      <span class="header-badge">Supply Only &amp; Guided Setup</span>
+      <h1 class="page-title">DIY Security Supply &amp; Technical Support</h1>
+      <p class="page-lead">
+        Quality pre-programmed equipment bundles, supply-only hardware, and expert guidance for handy homeowners, property managers, and farm owners.
+      </p>
+    </div>
+  </div>
+
+  <section class="diy-section">
+    <div class="container diy-grid">
+      <div class="diy-main">
+        <h2 class="subhead">Handy Homeowner &amp; Guided DIY Solutions</h2>
+        <p>
+          Prefer installing your own gate motor, electric fence energizer, or CCTV camera set? Gate &amp; Guard Projects supplies complete, tested hardware kits with pre-programmed remotes and clear wiring diagrams.
+        </p>
+        <p>
+          Unlike unvetted online box-drop retailers, every DIY bundle purchased from us includes direct WhatsApp and phone technical support from qualified installers.
+        </p>
+
+        <div class="kits-grid">
+          {diyKits.map((kit) => (
+            <div class="kit-card">
+              <span class="kit-brand">{kit.brand}</span>
+              <h3 class="kit-title">{kit.title}</h3>
+              <p class="kit-desc">{kit.desc}</p>
+              <a href="/contact#quote" class="btn-kit-enquire">Enquire / Order Kit</a>
+            </div>
+          ))}
+        </div>
+
+        <div class="notice-box">
+          <h3 class="notice-title">When to Choose Professional Installation vs DIY:</h3>
+          <p>
+            <strong>DIY Suitable:</strong> Simple motor replacements on existing tracks, wireless alarm sensor additions, basic plug-and-play CCTV cameras, and minor fence wire repairs.
+          </p>
+          <p>
+            <strong>Professional Technician Recommended:</strong> New heavy gate track construction, main electrical wiring hookups, and formal Electric Fence Certificate of Compliance (COC) issuance.
+          </p>
+        </div>
+      </div>
+
+      <div class="diy-sidebar">
+        <WhatsAppQuoteForm />
+      </div>
+    </div>
+  </section>
+
+  <QuoteCTA title="Need Advice on a DIY Security Kit?" subtitle="Send us a WhatsApp message to discuss equipment compatibility and pricing." />
+</Layout>
+
+<style>
+  .page-header {
+    background-color: var(--colour-charcoal);
+    color: var(--colour-white);
+    padding: 4rem 0 3.5rem 0;
+    border-bottom: 2px solid var(--colour-gold);
+  }
+
+  .header-badge {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--colour-gold-bright);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+  }
+
+  .page-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 5vw, 3.75rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 0.75rem;
+  }
+
+  .page-lead {
+    font-size: 1.15rem;
+    color: var(--colour-silver);
+    max-width: 750px;
+    line-height: 1.6;
+  }
+
+  .diy-section {
+    padding: 4rem 0;
+    background-color: var(--colour-paper);
+  }
+
+  .diy-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  @media (min-width: 992px) {
+    .diy-grid {
+      grid-template-columns: 1.8fr 1fr;
+    }
+  }
+
+  .subhead {
+    font-family: var(--font-heading);
+    font-size: 1.85rem;
+    font-weight: 800;
+    color: var(--colour-ink);
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 1rem;
+    color: var(--colour-text);
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+
+  .kits-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.25rem;
+    margin: 2rem 0;
+  }
+
+  @media (min-width: 640px) {
+    .kits-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .kit-card {
+    background-color: var(--colour-white);
+    border: 1px solid var(--colour-line);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .kit-brand {
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--colour-gold-dark);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
+  }
+
+  .kit-title {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--colour-ink);
+    margin-bottom: 0.5rem;
+  }
+
+  .kit-desc {
+    font-size: 0.875rem;
+    color: var(--colour-muted);
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+    flex-grow: 1;
+  }
+
+  .btn-kit-enquire {
+    display: inline-block;
+    background-color: var(--colour-paper);
+    color: var(--colour-ink);
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--colour-line);
+    border-radius: var(--radius-sm);
+    text-align: center;
+  }
+
+  .btn-kit-enquire:hover {
+    background-color: var(--colour-gold);
+    color: var(--colour-ink);
+    border-color: var(--colour-gold);
+  }
+
+  .notice-box {
+    background-color: var(--colour-white);
+    border: 1px solid var(--colour-line);
+    border-left: 4px solid var(--colour-charcoal);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .notice-title {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--colour-ink);
+    margin-bottom: 0.75rem;
+  }
+</style>

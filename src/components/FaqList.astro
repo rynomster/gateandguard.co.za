@@ -1,0 +1,87 @@
+---
+import type { FaqItem } from '../data/faqs';
+
+interface Props {
+  faqs: FaqItem[];
+}
+
+const { faqs } = Astro.props;
+---
+
+<div class="faq-accordion-list">
+  {faqs.map((faq, index) => (
+    <details class="faq-item" open={index === 0}>
+      <summary class="faq-summary">
+        <span class="faq-question">{faq.question}</span>
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </summary>
+      <div class="faq-answer">
+        <p>{faq.answer}</p>
+      </div>
+    </details>
+  ))}
+</div>
+
+<style>
+  .faq-accordion-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .faq-item {
+    background-color: var(--colour-white);
+    border: 1px solid var(--colour-line);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    transition: border-color var(--transition-fast);
+  }
+
+  .faq-item[open] {
+    border-color: var(--colour-gold);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .faq-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--colour-ink);
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+  }
+
+  .faq-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-question {
+    padding-right: 1rem;
+  }
+
+  .faq-icon {
+    font-size: 1.5rem;
+    line-height: 1;
+    color: var(--colour-gold-dark);
+    transition: transform var(--transition-fast);
+  }
+
+  .faq-item[open] .faq-icon {
+    transform: rotate(45deg);
+  }
+
+  .faq-answer {
+    padding: 0 1.25rem 1.25rem 1.25rem;
+    font-size: 0.95rem;
+    color: var(--colour-text);
+    line-height: 1.6;
+    border-top: 1px dashed var(--colour-line);
+    margin-top: 0.5rem;
+    padding-top: 1rem;
+  }
+</style>

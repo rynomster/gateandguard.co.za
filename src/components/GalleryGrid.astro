@@ -1,0 +1,312 @@
+---
+import { galleryItems, galleryCategories } from '../data/gallery';
+---
+
+<div class="gallery-component">
+  <!-- Category Filter Bar -->
+  <div class="filter-bar">
+    {galleryCategories.map((cat) => (
+      <button type="button" class="filter-btn" data-category={cat.id}>
+        {cat.label}
+      </button>
+    ))}
+  </div>
+
+  <!-- Gallery Grid -->
+  <div class="gallery-grid" id="gallery-grid">
+    {galleryItems.map((item) => (
+      <div class="gallery-card" data-cat={item.category}>
+        <div class="card-img-wrap">
+          <img
+            src={item.image}
+            alt={item.alt}
+            loading="lazy"
+            width="400"
+            height="300"
+            class="gallery-img"
+          />
+          <span class="category-badge">{item.categoryLabel}</span>
+        </div>
+        <div class="card-body">
+          <h3 class="item-title">{item.title}</h3>
+          <p class="item-desc">{item.description}</p>
+          {item.location && (
+            <p class="item-loc">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              <span>{item.location}</span>
+            </p>
+          )}
+          <button type="button" class="btn-preview" data-img={item.image} data-title={item.title} data-desc={item.description}>
+            Enlarge Photo
+          </button>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Lightweight Accessible Native Dialog Lightbox -->
+  <dialog id="lightbox-dialog" class="lightbox-dialog">
+    <div class="dialog-content">
+      <button type="button" id="close-dialog" class="close-btn" aria-label="Close Lightbox">&times;</button>
+      <img id="dialog-img" src="" alt="" class="dialog-img" />
+      <div class="dialog-info">
+        <h3 id="dialog-title"></h3>
+        <p id="dialog-desc"></p>
+      </div>
+    </div>
+  </dialog>
+</div>
+
+<style>
+  .gallery-component {
+    margin-top: 1rem;
+  }
+
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    justify-content: center;
+  }
+
+  .filter-btn {
+    background-color: var(--colour-white);
+    border: 1px solid var(--colour-line);
+    color: var(--colour-text);
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+
+  .filter-btn.active,
+  .filter-btn:hover {
+    background-color: var(--colour-gold);
+    color: var(--colour-ink);
+    border-color: var(--colour-gold);
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .gallery-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .gallery-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .gallery-card {
+    background-color: var(--colour-white);
+    border: 1px solid var(--colour-line);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-img-wrap {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    background-color: var(--colour-charcoal);
+  }
+
+  .gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .category-badge {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    background-color: rgba(11, 14, 16, 0.85);
+    color: var(--colour-gold-bright);
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 0.25rem 0.6rem;
+    border-radius: var(--radius-sm);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .card-body {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .item-title {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--colour-ink);
+    margin-bottom: 0.35rem;
+  }
+
+  .item-desc {
+    font-size: 0.875rem;
+    color: var(--colour-muted);
+    margin-bottom: 0.75rem;
+    flex-grow: 1;
+  }
+
+  .item-loc {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.8125rem;
+    color: var(--colour-gold-dark);
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .btn-preview {
+    background-color: var(--colour-paper);
+    color: var(--colour-text);
+    border: 1px solid var(--colour-line);
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    font-weight: 700;
+    padding: 0.4rem 0.75rem;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    align-self: flex-start;
+  }
+
+  .btn-preview:hover {
+    background-color: var(--colour-gold);
+    color: var(--colour-ink);
+  }
+
+  /* Lightbox Dialog */
+  .lightbox-dialog {
+    padding: 0;
+    border: none;
+    border-radius: var(--radius-md);
+    background: transparent;
+    max-width: 90vw;
+    max-height: 90vh;
+  }
+
+  .lightbox-dialog::backdrop {
+    background: rgba(11, 14, 16, 0.85);
+  }
+
+  .dialog-content {
+    background-color: var(--colour-charcoal);
+    color: var(--colour-white);
+    border: 2px solid var(--colour-gold);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    position: relative;
+    max-width: 700px;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.75rem;
+    background: transparent;
+    border: none;
+    color: var(--colour-white);
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
+  }
+
+  .dialog-img {
+    width: 100%;
+    max-height: 60vh;
+    object-fit: contain;
+    border-radius: var(--radius-sm);
+    margin-bottom: 1rem;
+    background-color: var(--colour-ink);
+  }
+
+  .dialog-info h3 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--colour-gold-bright);
+    margin-bottom: 0.25rem;
+  }
+
+  .dialog-info p {
+    font-size: 0.95rem;
+    color: var(--colour-silver);
+  }
+</style>
+
+<script>
+  // Category Filter Logic
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.gallery-card');
+
+  if (filterBtns.length > 0) {
+    filterBtns[0].classList.add('active');
+  }
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      const cat = btn.getAttribute('data-category');
+
+      cards.forEach((card) => {
+        const cardCat = card.getAttribute('data-cat');
+        if (cat === 'all' || cardCat === cat) {
+          (card as HTMLElement).style.display = 'flex';
+        } else {
+          (card as HTMLElement).style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // Lightbox Logic
+  const dialog = document.getElementById('lightbox-dialog') as HTMLDialogElement | null;
+  const dialogImg = document.getElementById('dialog-img') as HTMLImageElement | null;
+  const dialogTitle = document.getElementById('dialog-title');
+  const dialogDesc = document.getElementById('dialog-desc');
+  const closeBtn = document.getElementById('close-dialog');
+
+  document.querySelectorAll('.btn-preview').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      if (!dialog || !dialogImg || !dialogTitle || !dialogDesc) return;
+      const imgSrc = btn.getAttribute('data-img') || '';
+      const title = btn.getAttribute('data-title') || '';
+      const desc = btn.getAttribute('data-desc') || '';
+
+      dialogImg.src = imgSrc;
+      dialogImg.alt = title;
+      dialogTitle.textContent = title;
+      dialogDesc.textContent = desc;
+
+      dialog.showModal();
+    });
+  });
+
+  if (closeBtn && dialog) {
+    closeBtn.addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', (e) => {
+      if (e.target === dialog) dialog.close();
+    });
+  }
+</script>

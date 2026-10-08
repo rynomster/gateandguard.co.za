@@ -1,0 +1,249 @@
+---
+import { siteData } from '../data/site';
+---
+
+<section class="safer-tomorrow-section">
+  <div class="container split-grid">
+    <div class="split-content">
+      <span class="section-badge">Integrated Perimeter Protection</span>
+      <h2 class="split-title">A safer tomorrow starts with the right system today.</h2>
+      <p class="split-lead">
+        True security is more than just an alarm box on the wall. It is an integrated layer of physical deterrence, high-voltage perimeter fencing, automated access barriers, and real-time visual surveillance.
+      </p>
+
+      <div class="proposition-list">
+        <div class="prop-item">
+          <div class="prop-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          </div>
+          <div class="prop-text">
+            <h4>Physical & Psychological Deterrence</h4>
+            <p>High-tensile wall-top electric fencing coupled with outdoor early-warning beams keeps intruders off your grounds before they reach your front door.</p>
+          </div>
+        </div>
+
+        <div class="prop-item">
+          <div class="prop-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect></svg>
+          </div>
+          <div class="prop-text">
+            <h4>Automated Entry Control</h4>
+            <p>Fast-acting gate motors and intercom triggers allow you to verify and admit visitors without stepping outside into vulnerable driveway zones.</p>
+          </div>
+        </div>
+
+        <div class="prop-item">
+          <div class="prop-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
+          </div>
+          <div class="prop-text">
+            <h4>Continuous HD Surveillance</h4>
+            <p>Color night-vision cameras record critical footage around the clock, providing peace of mind and mobile smartphone alerts wherever you travel.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="split-actions">
+        <a href="/contact#quote" class="btn-split-cta">Book a Free Site Inspection</a>
+        <a href={`tel:${siteData.phone}`} class="btn-split-phone">Call {siteData.phoneFormatted}</a>
+      </div>
+    </div>
+
+    <div class="split-graphic">
+      <div class="shield-card">
+        <img src="/assets/brand/logo-mark.svg" alt="Gate & Guard Shield Emblem" class="shield-img" width="160" height="192" />
+        <h3 class="shield-heading">GATE &amp; GUARD</h3>
+        <p class="shield-sub">PROJECTS</p>
+        <span class="shield-tagline">Protect. Automate. Connect.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .safer-tomorrow-section {
+    background-color: var(--colour-charcoal);
+    color: var(--colour-silver-light);
+    padding: 5rem 0;
+    border-top: 1px solid var(--colour-line-dark);
+    border-bottom: 1px solid var(--colour-line-dark);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .split-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  @media (min-width: 992px) {
+    .split-grid {
+      grid-template-columns: 1.3fr 0.8fr;
+    }
+  }
+
+  .section-badge {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: var(--colour-gold-bright);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .split-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.25rem, 4vw, 3.25rem);
+    font-weight: 800;
+    color: var(--colour-white);
+    line-height: 1.1;
+    letter-spacing: 0.02em;
+    margin-bottom: 1.25rem;
+  }
+
+  .split-lead {
+    font-size: 1.05rem;
+    color: var(--colour-silver);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .proposition-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2.25rem;
+  }
+
+  .prop-item {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .prop-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(217, 154, 27, 0.15);
+    color: var(--colour-gold-bright);
+    border-radius: var(--radius-sm);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .prop-text h4 {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--colour-white);
+    margin-bottom: 0.25rem;
+  }
+
+  .prop-text p {
+    font-size: 0.9rem;
+    color: var(--colour-silver);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .split-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .btn-split-cta {
+    display: inline-block;
+    background-color: var(--colour-gold);
+    color: var(--colour-ink);
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    padding: 0.75rem 1.75rem;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-gold);
+  }
+
+  .btn-split-cta:hover {
+    background-color: var(--colour-gold-bright);
+    color: var(--colour-ink);
+  }
+
+  .btn-split-phone {
+    display: inline-block;
+    background-color: transparent;
+    color: var(--colour-white);
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid var(--colour-line-dark);
+    border-radius: var(--radius-sm);
+  }
+
+  .btn-split-phone:hover {
+    border-color: var(--colour-silver);
+    color: var(--colour-white);
+  }
+
+  .split-graphic {
+    display: flex;
+    justify-content: center;
+  }
+
+  .shield-card {
+    background-color: var(--colour-panel);
+    border: 2px solid var(--colour-gold);
+    border-radius: var(--radius-lg);
+    padding: 3rem 2rem;
+    text-align: center;
+    box-shadow: var(--shadow-lg);
+    width: 100%;
+    max-width: 380px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .shield-img {
+    height: 160px;
+    width: auto;
+    margin-bottom: 1.5rem;
+  }
+
+  .shield-heading {
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--colour-white);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.2rem;
+  }
+
+  .shield-sub {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--colour-gold-bright);
+    letter-spacing: 0.2em;
+    margin-bottom: 1.25rem;
+  }
+
+  .shield-tagline {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--colour-silver);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+</style>

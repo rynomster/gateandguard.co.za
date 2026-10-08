@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 320" width="300" height="320">
+  <defs>
+    <linearGradient id="sGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E5AA32" />
+      <stop offset="50%" stop-color="#D99A1B" />
+      <stop offset="100%" stop-color="#A86F08" />
+    </linearGradient>
+    <linearGradient id="sSilver" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="50%" stop-color="#C9CDD2" />
+      <stop offset="100%" stop-color="#9AA0A6" />
+    </linearGradient>
+    <linearGradient id="sCharcoal" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#242B30" />
+      <stop offset="100%" stop-color="#0F1316" />
+    </linearGradient>
+  </defs>
+
+  <!-- Centered Shield Mark -->
+  <g transform="translate(75, 10) scale(0.75)">
+    <path d="M 100,10 L 185,45 C 185,145 140,205 100,230 C 60,205 15,145 15,45 Z" fill="url(#sGold)" />
+    <path d="M 100,22 L 173,52 C 173,138 132,192 100,215 C 68,192 27,138 27,52 Z" fill="url(#sCharcoal)" />
+    <path d="M 100,28 L 167,56 C 167,134 128,185 100,207 C 72,185 33,134 33,56 Z" fill="none" stroke="url(#sSilver)" stroke-width="2.5" opacity="0.8" />
+    <g transform="translate(100, 115)">
+      <path d="M -35,10 V -15 C -35,-35 35,-35 35,-15 V 10" fill="none" stroke="url(#sSilver)" stroke-width="10" stroke-linecap="round" />
+      <rect x="-38" y="0" width="76" height="58" rx="8" fill="url(#sGold)" stroke="url(#sSilver)" stroke-width="3" />
+      <circle cx="0" cy="22" r="9" fill="#0B0E10" />
+      <path d="M -5,22 L 5,22 L 8,42 L -8,42 Z" fill="#0B0E10" />
+      <circle cx="0" cy="22" r="4" fill="url(#sSilver)" />
+    </g>
+  </g>
+
+  <!-- Centered Brand Typography -->
+  <text x="150" y="225" font-family="'Barlow Condensed', 'Arial Narrow', sans-serif" font-size="36" font-weight="800" letter-spacing="2" fill="#FFFFFF" text-anchor="middle">GATE &amp; GUARD</text>
+
+  <rect x="100" y="238" width="100" height="22" rx="3" fill="url(#sGold)" />
+  <text x="150" y="254" font-family="'Barlow Condensed', 'Arial Narrow', sans-serif" font-size="15" font-weight="800" letter-spacing="3" fill="#0B0E10" text-anchor="middle">PROJECTS</text>
+
+  <text x="150" y="285" font-family="'Inter', sans-serif" font-size="12" font-weight="600" letter-spacing="1.5" fill="url(#sSilver)" text-anchor="middle">PROTECT. AUTOMATE. CONNECT.</text>
+  <text x="150" y="303" font-family="'Inter', sans-serif" font-size="10" font-weight="500" letter-spacing="1" fill="#8A929A" text-anchor="middle">Security | Automation | Access | Solutions</text>
+</svg>

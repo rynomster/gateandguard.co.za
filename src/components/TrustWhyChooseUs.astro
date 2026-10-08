@@ -1,0 +1,154 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import { siteData } from '../data/site';
+
+const whyPoints = [
+  {
+    title: "Battery & Load-Shedding Resilience",
+    desc: "All our gate motor, electric fence, and CCTV systems are configured with heavy-duty battery backups and optional lithium upgrades so your perimeter remains armed during power outages.",
+    icon: "battery-charging"
+  },
+  {
+    title: "Compliance & COC Certification",
+    desc: "We supply official Electric Fence Certificates of Compliance (COC) required by South African law, ensuring safety standards and insurance readiness.",
+    icon: "award"
+  },
+  {
+    title: "Expert Workmanship",
+    desc: "Our technicians deliver clean cabling, aligned mounting, and thorough system testing for residential properties, housing estates, and commercial facilities.",
+    icon: "check-circle"
+  },
+  {
+    title: "No-Backend WhatsApp Support",
+    desc: "Get rapid, direct technical answers, quick site estimates, and friendly after-sales assistance via direct call or WhatsApp.",
+    icon: "message-square"
+  }
+];
+---
+
+<section class="why-choose-us-section">
+  <div class="container">
+    <SectionHeading
+      eyebrow="Why Choose Gate & Guard"
+      title="Trusted Security & Automation Engineering"
+      subtitle="Built to withstand harsh local environmental conditions, frequent power cycles, and rigorous daily access demands."
+      centered={true}
+    />
+
+    <div class="why-grid">
+      {whyPoints.map((pt) => (
+        <div class="why-card">
+          <div class="why-icon">
+            {pt.icon === 'battery-charging' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 18H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h2"></path><path d="M19 6h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2"></path><line x1="23" y1="11" x2="23" y2="13"></line><polygon points="11 6 7 12 13 12 9 18 13 18"></polygon></svg>}
+            {pt.icon === 'award' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>}
+            {pt.icon === 'check-circle' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>}
+            {pt.icon === 'message-square' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>}
+          </div>
+          <h3 class="why-title">{pt.title}</h3>
+          <p class="why-desc">{pt.desc}</p>
+        </div>
+      ))}
+    </div>
+
+    {siteData.trustMetrics && siteData.trustMetrics.length > 0 && (
+      <div class="metrics-row">
+        {siteData.trustMetrics.map((m) => (
+          <div class="metric-item">
+            <span class="metric-val">{m.value}</span>
+            <span class="metric-lbl">{m.label}</span>
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .why-choose-us-section {
+    padding: 5rem 0;
+    background-color: var(--colour-paper);
+  }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .why-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .why-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .why-card {
+    background-color: var(--colour-white);
+    border: 1px solid var(--colour-line);
+    border-radius: var(--radius-md);
+    padding: 1.75rem;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .why-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background-color: rgba(217, 154, 27, 0.12);
+    color: var(--colour-gold-dark);
+    border-radius: var(--radius-sm);
+    margin-bottom: 1.25rem;
+  }
+
+  .why-title {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--colour-ink);
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+
+  .why-desc {
+    font-size: 0.9rem;
+    color: var(--colour-muted);
+    line-height: 1.5;
+  }
+
+  .metrics-row {
+    margin-top: 3rem;
+    padding: 2rem;
+    background-color: var(--colour-charcoal);
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 1.5rem;
+    text-align: center;
+  }
+
+  .metric-val {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 2.75rem;
+    font-weight: 800;
+    color: var(--colour-gold-bright);
+    line-height: 1;
+  }
+
+  .metric-lbl {
+    font-size: 0.875rem;
+    color: var(--colour-silver);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+</style>
