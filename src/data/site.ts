@@ -55,7 +55,7 @@ export const siteData: SiteData = {
   legalName: "Gate & Guard Projects (Pty) Ltd",
   tagline: "Protect. Automate. Connect.",
   descriptor: "Security | Automation | Access | Solutions",
-  siteUrl: "https://gateandguard.co.za",
+  siteUrl: "https://rynomster.github.io/gateandguard.co.za",
   phone: "+27600000000", // TODO: Client to provide exact primary phone
   phoneFormatted: "060 000 0000",
   whatsapp: "27600000000", // TODO: Client to provide exact WhatsApp number (country code format without +)

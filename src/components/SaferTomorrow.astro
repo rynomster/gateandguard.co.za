@@ -1,5 +1,6 @@
 ---
 import { siteData } from '../data/site';
+import { path } from '../utils/paths';
 ---
 
 <section class="safer-tomorrow-section">
@@ -44,14 +45,14 @@ import { siteData } from '../data/site';
       </div>
 
       <div class="split-actions">
-        <a href="/contact#quote" class="btn-split-cta">Book a Free Site Inspection</a>
+        <a href={path('/contact#quote')} class="btn-split-cta">Book a Free Site Inspection</a>
         <a href={`tel:${siteData.phone}`} class="btn-split-phone">Call {siteData.phoneFormatted}</a>
       </div>
     </div>
 
     <div class="split-graphic">
       <div class="shield-card">
-        <img src="/assets/brand/logo-mark.svg" alt="Gate & Guard Shield Emblem" class="shield-img" width="160" height="192" />
+        <img src={path('/assets/brand/logo-mark.svg')} alt="Gate & Guard Shield Emblem" class="shield-img" width="160" height="192" />
         <h3 class="shield-heading">GATE &amp; GUARD</h3>
         <p class="shield-sub">PROJECTS</p>
         <span class="shield-tagline">Protect. Automate. Connect.</span>

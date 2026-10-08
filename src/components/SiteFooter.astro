@@ -1,6 +1,7 @@
 ---
 import { siteData } from '../data/site';
 import { servicesData } from '../data/services';
+import { path } from '../utils/paths';
 
 const currentYear = new Date().getFullYear();
 ---
@@ -9,8 +10,8 @@ const currentYear = new Date().getFullYear();
   <div class="container footer-grid">
     <!-- Brand Col -->
     <div class="footer-col brand-col">
-      <a href="/" class="footer-logo">
-        <img src="/assets/brand/logo-stacked.svg" alt="Gate & Guard Projects Logo" class="footer-logo-img" width="180" height="192" loading="lazy" />
+      <a href={path('/')} class="footer-logo">
+        <img src={path('/assets/brand/logo-stacked.svg')} alt="Gate & Guard Projects Logo" class="footer-logo-img" width="180" height="192" loading="lazy" />
       </a>
       <p class="brand-tagline">{siteData.tagline}</p>
       <p class="brand-desc">{siteData.descriptor}</p>
@@ -26,7 +27,7 @@ const currentYear = new Date().getFullYear();
       <h3 class="footer-heading">Our Services</h3>
       <ul class="footer-links">
         {servicesData.map((svc) => (
-          <li><a href={`/services/${svc.slug}`}>{svc.shortTitle}</a></li>
+          <li><a href={path(`/services/${svc.slug}`)}>{svc.shortTitle}</a></li>
         ))}
       </ul>
     </div>
@@ -35,12 +36,12 @@ const currentYear = new Date().getFullYear();
     <div class="footer-col">
       <h3 class="footer-heading">Quick Links</h3>
       <ul class="footer-links">
-        <li><a href="/about">About Gate & Guard</a></li>
-        <li><a href="/services">All Security Services</a></li>
-        <li><a href="/gallery">Completed Projects</a></li>
-        <li><a href="/coc-certification">Electric Fence COC</a></li>
-        <li><a href="/diy-projects">DIY Supply Kits</a></li>
-        <li><a href="/contact">Contact & Quotes</a></li>
+        <li><a href={path('/about')}>About Gate & Guard</a></li>
+        <li><a href={path('/services')}>All Security Services</a></li>
+        <li><a href={path('/gallery')}>Completed Projects</a></li>
+        <li><a href={path('/coc-certification')}>Electric Fence COC</a></li>
+        <li><a href={path('/diy-projects')}>DIY Supply Kits</a></li>
+        <li><a href={path('/contact')}>Contact & Quotes</a></li>
       </ul>
     </div>
 
