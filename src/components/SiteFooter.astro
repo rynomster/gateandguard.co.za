@@ -11,7 +11,10 @@ const currentYear = new Date().getFullYear();
     <!-- Brand Col -->
     <div class="footer-col brand-col">
       <a href={path('/')} class="footer-logo">
-        <img src={path('/assets/brand/logo-stacked.svg')} alt="Gate & Guard Projects Logo" class="footer-logo-img" width="180" height="192" loading="lazy" />
+        <picture>
+          <source srcset={path('/assets/brand/logo-horizontal.webp')} type="image/webp" />
+          <img src={path('/assets/brand/logo-horizontal.png')} alt="Gate & Guard Projects Logo" class="footer-logo-img" width="220" height="73" loading="lazy" />
+        </picture>
       </a>
       <p class="brand-tagline">{siteData.tagline}</p>
       <p class="brand-desc">{siteData.descriptor}</p>
@@ -99,8 +102,9 @@ const currentYear = new Date().getFullYear();
   }
 
   .footer-logo-img {
-    height: 120px;
+    height: 52px;
     width: auto;
+    max-width: 240px;
     margin-bottom: 1rem;
   }
 
