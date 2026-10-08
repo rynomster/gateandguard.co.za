@@ -52,7 +52,10 @@ import { path } from '../utils/paths';
 
     <div class="split-graphic">
       <div class="shield-card">
-        <img src={path('/assets/brand/logo-mark.svg')} alt="Gate & Guard Shield Emblem" class="shield-img" width="160" height="192" />
+        <picture>
+          <source srcset={path('/assets/brand/logo-mark.webp')} type="image/webp" />
+          <img src={path('/assets/brand/logo-mark.png')} alt="Gate & Guard Shield Emblem" class="shield-img" width="160" height="192" />
+        </picture>
         <h3 class="shield-heading">GATE &amp; GUARD</h3>
         <p class="shield-sub">PROJECTS</p>
         <span class="shield-tagline">Protect. Automate. Connect.</span>

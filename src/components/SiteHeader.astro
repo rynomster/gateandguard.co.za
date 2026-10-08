@@ -38,7 +38,10 @@ const currentPath = Astro.url.pathname;
     <div class="container nav-inner">
       <!-- Brand Logo -->
       <a href={path('/')} class="brand-logo" aria-label="Gate and Guard Projects Home">
-        <img src={path('/assets/brand/logo-horizontal.svg')} alt="Gate & Guard Projects Logo" class="brand-img" width="220" height="73" />
+        <picture>
+          <source srcset={path('/assets/brand/logo-horizontal.webp')} type="image/webp" />
+          <img src={path('/assets/brand/logo-horizontal.png')} alt="Gate & Guard Projects Logo" class="brand-img" width="220" height="73" />
+        </picture>
       </a>
 
       <!-- Desktop Nav List -->
