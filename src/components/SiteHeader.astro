@@ -38,7 +38,7 @@ const currentPath = Astro.url.pathname;
     <div class="container nav-inner">
       <!-- Brand Logo -->
       <a href={path('/')} class="brand-logo" aria-label="Gate and Guard Projects Home">
-        <img src={path('/assets/brand/logo-horizontal.svg')} alt="Gate & Guard Projects Logo" class="brand-img" width="220" height="42" />
+        <img src={path('/assets/brand/logo-horizontal.png')} alt="Gate & Guard Projects Logo" class="brand-img" width="220" height="73" />
       </a>
 
       <!-- Desktop Nav List -->
@@ -156,8 +156,9 @@ const currentPath = Astro.url.pathname;
   }
 
   .brand-img {
-    height: 42px;
+    height: 48px;
     width: auto;
+    object-fit: contain;
   }
 
   .nav-links {
